@@ -12,12 +12,10 @@ export default function useAsync(apiHook, moment = true) {
     setError(null);
     try {
       const data = await apiHook(...args);
-      console.log(data)
       setData(data);
       setLoading(false);
       return data;
     } catch (err) {
-      console.log(err)
       setError(error);
       setLoading(false);
       throw err;

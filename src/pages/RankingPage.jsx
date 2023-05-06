@@ -2,26 +2,36 @@ import { colors } from "../assets/colors";
 import styled from "styled-components";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
-import useGetHealth from "../services/hooks/api/useGetHealth";
-import { useEffect } from "react";
+import useGetRanking from "../services/hooks/api/useGetRanking";
+import { useEffect, useState } from "react";
 
 export default function RankingPage() {
-  const { getHealth } = useGetHealth();
+  const { getRanking, getRankingLoading, getRankingError } = useGetRanking();
+  const [ranking, setRanking] = useState([]);
+
   useEffect(() => {
     async function getApiData() {
       try {
-        const health = await getHealth();
-        console.log(health);
+        const ranking = await getRanking();
+        console.log(ranking);
       } catch (err) {
         console.log(err);
       }
     }
-    getApiData()
+    getApiData();
   }, []);
+
   return (
     <>
       <Sidebar />
       <Header />
+      {getRankingError ? (
+        <>um erro ocorreu</>
+      ) : getRankingLoading ? (
+        <>carregando...</>
+      ) : (
+        <>ranking!</>
+      )}
     </>
   );
 }
