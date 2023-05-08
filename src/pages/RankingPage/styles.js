@@ -7,7 +7,7 @@ export const RankingContainer = styled.div`
   align-items: center;
   width: 55vw;
   height: fit-content;
-  background-color: ${colors.darkBlue};
+  background-color: rgb(0, 75, 95, 0.7);
   border-radius: 20px;
   padding: 30px;
   box-sizing: border-box;
@@ -153,3 +153,18 @@ export const RankingLeft = styled.div`
     filter: drop-shadow(0px 0px 1px ${colors.lightGrey});
   }
 `;
+
+export const LogosContainer = styled.div`
+display: flex;
+position: relative;
+display: flex;
+justify-content: center;
+height: 100px;
+align-items: center;
+>img{
+  width: 200px;
+}
+>img:last-child{
+  width: 60px;
+}
+`

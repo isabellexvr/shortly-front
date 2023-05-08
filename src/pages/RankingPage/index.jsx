@@ -3,7 +3,18 @@ import { useEffect, useState } from "react";
 import { RiTrophyFill } from "react-icons/ri";
 import handlePodiumIcon from "../helpers/handlePodiumIcon.js";
 import { HiCursorClick } from "react-icons/hi";
-import { RankingContainer, RankingHeader, PodiumContainer, Podium, ViewsCount, TwoLeftContainer, RankingLeft } from "./styles";
+import {
+  RankingContainer,
+  RankingHeader,
+  PodiumContainer,
+  Podium,
+  ViewsCount,
+  TwoLeftContainer,
+  RankingLeft,
+  LogosContainer,
+} from "./styles";
+import bermudaLogo from "../../assets/bermuda.png";
+import logoFull from "../../assets/logo-full.png";
 
 const MOCKEDPODIUM = [
   {
@@ -60,6 +71,13 @@ export default function RankingPage() {
 
   return (
     <>
+      <LogosContainer>
+        
+        <img src={logoFull} />
+<img src={bermudaLogo} />
+
+      </LogosContainer>
+
       {getRankingError ? (
         <>um erro ocorreu</>
       ) : getRankingLoading ? (
@@ -112,4 +130,3 @@ export default function RankingPage() {
     </>
   );
 }
-

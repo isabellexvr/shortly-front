@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import RankingPage from "./pages/RankingPage.js"
+import RankingPage from "./pages/RankingPage"
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import styled from "styled-components";
+import SignUpPage from "./pages/SignUpPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Sidebar />
         <Routes>
           <Route element={<RankingPage />} path="/" />
+          <Route element={<SignUpPage/>} path="/sign-up"/>
         </Routes>
       </BrowserRouter>
     </AppStyle>
@@ -19,6 +21,8 @@ function App() {
 }
 
 export default App;
+
+
 
 const AppStyle = styled.div`
   width: 100vw;
