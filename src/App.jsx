@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import RankingPage from "./pages/RankingPage";
+import RankingPage from "./pages/RankingPage.js"
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import styled from "styled-components";

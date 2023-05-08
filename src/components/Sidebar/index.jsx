@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import logo from "../assets/s.png";
+import logo from "../../assets/s.png";
 import {RiTrophyFill} from "react-icons/ri"
 import {IoIosExit} from "react-icons/io"
 import { Logo, CompressedSidebar, ExpandedSidebar } from "./styles";
