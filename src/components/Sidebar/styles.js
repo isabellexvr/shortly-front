@@ -1,66 +1,31 @@
 import styled, { keyframes } from "styled-components";
-import { useState } from "react";
-import logo from "../assets/s.png";
-import { colors } from "../assets/colors";
-import {RiTrophyFill} from "react-icons/ri"
-import {IoIosExit} from "react-icons/io"
+import { colors } from "../../assets/colors";
 
-export default function Sidebar() {
-  const [showSidebar, setShowSidebar] = useState(null);
-
-  return (
-    <>
-      {!showSidebar && (
-        <CompressedSidebar showSideBar={showSidebar}>
-          <div className="header" onClick={() => setShowSidebar(!showSidebar)}>
-            <Logo src={logo} />
-          </div>
-          <div className="icons">
-            <RiTrophyFill/>
-
-          </div>
-          <div className="logout">
-            <IoIosExit/>
-          </div>
-        </CompressedSidebar>
-      )}
-      {showSidebar && (
-        <ExpandedSidebar>
-          <div className="header" onClick={() => setShowSidebar(!showSidebar)}>
-            <Logo src={logo} />
-            <h1>Shortly</h1>
-          </div>
-        </ExpandedSidebar>
-      )}
-    </>
-  );
-}
-
-const LogoAppear = keyframes`
+export const LogoAppear = keyframes`
     from{opacity: 0;}
     to{opacity: 1;}
 `;
 
-const Logo = styled.img`
+export const Logo = styled.img`
   height: 40px;
   width: 40px;
   object-fit: cover;
   cursor: pointer;
 `;
 
-const ExpandSidebar = keyframes`
+export const ExpandSidebar = keyframes`
 from {width: 50px}
     to {
         width: 200px;
     };
 `;
 
-const RetractSidebar = keyframes`
+export const RetractSidebar = keyframes`
     from {width: 200px}
     to{width: 60px}
 `;
 
-const CompressedSidebar = styled.div`
+export const CompressedSidebar = styled.div`
 z-index 1;
   height: 100vh;
   width: 60px;
@@ -100,7 +65,7 @@ z-index 1;
   }
 `;
 
-const ExpandedSidebar = styled.div`
+export const ExpandedSidebar = styled.div`
 z-index 1;
   height: 100vh;
   width: 200px;
