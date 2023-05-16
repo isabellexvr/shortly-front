@@ -63,6 +63,7 @@ z-index 1;
     >svg{
       margin-top: 25px;
       font-size: 23px;
+      cursor: pointer;
     }
   }
   .logout{

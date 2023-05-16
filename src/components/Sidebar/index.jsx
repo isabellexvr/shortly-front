@@ -4,9 +4,11 @@ import logoFull from "../../assets/logo-full-white.png";
 import { RiTrophyFill } from "react-icons/ri";
 import { IoIosExit } from "react-icons/io";
 import { Logo, CompressedSidebar, ExpandedSidebar, LogoFull } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
   const [showSidebar, setShowSidebar] = useState(null);
+  const navigate= useNavigate()
 
   return (
     <>
@@ -16,7 +18,7 @@ export default function Sidebar() {
             <Logo src={logo} />
           </div>
           <div className="icons">
-            <RiTrophyFill />
+            <RiTrophyFill onClick={() => navigate("/")} />
           </div>
           <div className="logout">
             <IoIosExit />

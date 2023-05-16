@@ -27,7 +27,7 @@ const HeaderContainer = styled.div`
   box-sizing: border-box;
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   all: unset;
   cursor: pointer;
   width: 174px;
