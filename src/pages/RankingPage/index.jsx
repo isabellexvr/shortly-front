@@ -11,10 +11,8 @@ import {
   ViewsCount,
   TwoLeftContainer,
   RankingLeft,
-  LogosContainer,
+  RankingTitle
 } from "./styles";
-import bermudaLogo from "../../assets/bermuda.png";
-import logoFull from "../../assets/logo-full.png";
 
 const MOCKEDPODIUM = [
   {
@@ -71,25 +69,19 @@ export default function RankingPage() {
 
   return (
     <>
-      <LogosContainer>
-        
-        <img src={logoFull} />
-<img src={bermudaLogo} />
-
-      </LogosContainer>
-
       {getRankingError ? (
         <>um erro ocorreu</>
       ) : getRankingLoading ? (
         <>carregando...</>
       ) : (
         <>
+          <RankingTitle>
+            <h1>Ranking</h1>
+            <RiTrophyFill />
+          </RankingTitle>
+
           <RankingContainer>
             <RankingHeader>
-              <div className="title">
-                <RiTrophyFill />
-                <h1>Ranking</h1>
-              </div>
               <div className="subtitle">
                 <h2>Top Most Clicked Shortened URLs Owners</h2>
               </div>

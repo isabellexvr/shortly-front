@@ -13,6 +13,12 @@ export const Logo = styled.img`
   cursor: pointer;
 `;
 
+export const LogoFull = styled.img`
+  cursor: pointer;
+  padding: 10px;
+  width: 140px;
+`
+
 export const ExpandSidebar = keyframes`
 from {width: 50px}
     to {
@@ -74,6 +80,7 @@ z-index 1;
   left: 0;
   top: 0;
   animation: ${ExpandSidebar} 1s linear;
+  font-family: "DM Sans", sans-serif;
   .header {
     margin-top: 10px;
     animation: ${LogoAppear} 5s ease-in-out;
@@ -84,8 +91,9 @@ z-index 1;
     align-items: center;
     > h1 {
       cursor: pointer;
-      font-size: 28px;
+      font-size: 32px;
       color: ${colors.lightBlue};
+      font-weight: 700;
     }
   }
 `;

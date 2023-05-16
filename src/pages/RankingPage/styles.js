@@ -7,11 +7,32 @@ export const RankingContainer = styled.div`
   align-items: center;
   width: 55vw;
   height: fit-content;
-  background-color: rgb(0, 75, 95, 0.7);
   border-radius: 20px;
+  background-color: rgb(0, 75, 95, 0.9);
   padding: 30px;
   box-sizing: border-box;
   font-family: "DM Sans", sans-serif;
+`;
+
+export const RankingTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  font-family: "DM Sans", sans-serif;
+  padding: 5px;
+  > h1 {
+    font-size: 55px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: ${colors.darkBlue};
+    -webkit-text-stroke: 1.5px ${colors.darkBlue};
+  }
+  > svg {
+    font-size: 50px;
+    color: yellow;
+  }
 `;
 
 export const RankingHeader = styled.div`
@@ -20,34 +41,11 @@ export const RankingHeader = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 35px;
-  > .title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 43px;
-    font-weight: 700;
-    height: fit-content;
-    margin-bottom: 10px;
-    color: ${colors.darkBlue};
-    > h1 {
-      cursor: pointer;
-      -webkit-text-stroke: 2px ${colors.lightBlue};
-      :hover {
-        color: yellow;
-        transition: all 0.7s ease;
-      }
-    }
-    > svg {
-      font-size: 50px;
-      margin-right: 10px;
-      color: yellow;
-    }
-  }
   > .subtitle {
     h2 {
       font-size: 17px;
       font-weight: 500;
-      color: ${colors.lightGrey};
+      color: black;
     }
   }
 `;
@@ -145,7 +143,7 @@ export const RankingLeft = styled.div`
   > h2 {
     font-weight: 700;
   }
-  >h3{
+  > h3 {
     color: ${colors.lightGrey};
     font-size: 13px;
     font-weight: 700;
@@ -153,18 +151,3 @@ export const RankingLeft = styled.div`
     filter: drop-shadow(0px 0px 1px ${colors.lightGrey});
   }
 `;
-
-export const LogosContainer = styled.div`
-display: flex;
-position: relative;
-display: flex;
-justify-content: center;
-height: 100px;
-align-items: center;
->img{
-  width: 200px;
-}
->img:last-child{
-  width: 60px;
-}
-`
