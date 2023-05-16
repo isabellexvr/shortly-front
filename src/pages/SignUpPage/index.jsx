@@ -34,15 +34,15 @@ export default function SignUpPage() {
 }
 
 const Form = styled.form`
-  width: 33vw;
+  width: 32vw;
   margin-top: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: rgb(0, 75, 95, 0.9);
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   border-radius: 20px;
   >button{
     margin-top: 15px;
@@ -53,6 +53,7 @@ const InputContainer = styled.div`
   position: relative;
   font-family: "DM Sans", sans-serif;
   margin-bottom: 20px;
+  font-weight: 500;
   > label {
     position: absolute;
     left: 1px;

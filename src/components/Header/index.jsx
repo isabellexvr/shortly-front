@@ -1,13 +1,16 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { colors } from "../../assets/colors";
+import {useNavigate} from "react-router-dom";
+
 export default function Header() {
+  const navigate = useNavigate();
   return (
     <HeaderContainer>
       <Button fontColor="black" backgroundColor="white">
         About
       </Button>
-      <Button fontColor="white" backgroundColor={colors.lightBlue}>
+      <Button fontColor="white" backgroundColor={colors.lightBlue} onClick={() => navigate("/sign-up")}>
         Get Started
       </Button>
     </HeaderContainer>
