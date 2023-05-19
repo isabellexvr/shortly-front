@@ -2,8 +2,17 @@ import styled from "styled-components";
 import { colors } from "../../assets/colors.js";
 import { FaUserPlus } from "react-icons/fa";
 import { Button } from "../../components/Header";
+import Input from "../../components/Input/index.jsx";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function SignUpPage() {
+  const [form, setForm] = useState({});
+
+  const handleForm = ({ target: { value, name } }) => {
+    setForm({ ...form, [name]: value });
+  };
+
   return (
     <>
       <Title>
@@ -11,30 +20,55 @@ export default function SignUpPage() {
         <FaUserPlus />
       </Title>
       <Form>
-        <InputContainer>
-          <input required type="text" name="" id="name" />
-          <label htmlFor="name">Name</label>
-        </InputContainer>
-        <InputContainer>
-          <input required type="text" name="" id="email" />
-          <label htmlFor="email">E-mail</label>
-        </InputContainer>
-        <InputContainer>
-          <input required type="text" name="" id="password" />
-          <label htmlFor="password">Password</label>
-        </InputContainer>
-        <InputContainer>
-          <input required type="text" name="" id="confirmPassword" />
-          <label htmlFor="confirmPassword">Confirm Password</label>
-        </InputContainer>
-        <Button type="submit" fontColor="white" backgroundColor={colors.lightBlue}>Confirm</Button>
+        <Input
+          type={"text"}
+          id={"name"}
+          htmlFor={"name"}
+          handleEvent={handleForm}
+        >
+          Name
+        </Input>
+        <Input
+          type={"email"}
+          id={"email"}
+          htmlFor={"email"}
+          handleEvent={handleForm}
+        >
+          E-mail
+        </Input>
+        <Input
+          type={"password"}
+          id={"password"}
+          htmlFor={"password"}
+          handleEvent={handleForm}
+        >
+          Password
+        </Input>
+        <Input
+          type={"password"}
+          id={"confirmPassword"}
+          htmlFor={"confirmPassword"}
+          handleEvent={handleForm}
+        >
+          Confirm Password
+        </Input>
+        <StyledLink to={"/sign-in"}>
+          Already registered? Sign in instead!
+        </StyledLink>
+        <Button
+          type="submit"
+          fontColor="white"
+          backgroundColor={colors.lightBlue}
+        >
+          Confirm
+        </Button>
       </Form>
     </>
   );
 }
 
 const Form = styled.form`
-  width: 32vw;
+  width: 30vw;
   margin-top: 15px;
   display: flex;
   flex-direction: column;
@@ -44,45 +78,10 @@ const Form = styled.form`
   padding-top: 30px;
   padding-bottom: 30px;
   border-radius: 20px;
-  >button{
-    margin-top: 15px;
-  }
-`;
+  user-select: none;
 
-const InputContainer = styled.div`
-  position: relative;
-  font-family: "DM Sans", sans-serif;
-  margin-bottom: 20px;
-  font-weight: 500;
-  > label {
-    position: absolute;
-    left: 1px;
-    bottom: 5px;
-    color: white;
-    opacity: 0.5;
-    cursor: text;
-    font-size: 16px;
-    transition: 0.5s ease-in-out;
-  }
-  > input {
-    all: unset;
-    border-bottom: 2px solid white;
-    outline: 0;
-    padding: 5px;
-    box-sizing: border-box;
-    font-size: 16px;
-    width: 250px;
-    :focus,
-    :valid {
-      border-bottom: 2px solid ${colors.mediumBlue};
-      transition: 0.5s ease-in-out;
-    }
-    :focus ~ label,
-    :valid ~ label {
-      color: ${colors.mediumBlue};
-      transform: translateY(-24px);
-      font-size: 12px;
-    }
+  > button {
+    margin-top: 15px;
   }
 `;
 
@@ -92,7 +91,8 @@ export const Title = styled.div`
   align-items: center;
   height: fit-content;
   font-family: "DM Sans", sans-serif;
-  padding: 5px;
+  cursor: default;
+  user-select: none;
   > h1 {
     font-size: 55px;
     margin-right: 10px;
@@ -106,3 +106,15 @@ export const Title = styled.div`
     color: ${colors.lightBlue};
   }
 `;
+
+const StyledLink = styled(Link)`
+  all: unset;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+  padding: 13px;
+  cursor: pointer;
+  user-select: none;
+
+`
