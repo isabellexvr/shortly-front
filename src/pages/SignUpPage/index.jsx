@@ -5,12 +5,36 @@ import { Button } from "../../components/Header";
 import Input from "../../components/Input/index.jsx";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import usePostUser from "../../services/hooks/api/usePostUser.js";
+import useSignInUser from "../../services/hooks/api/useSignInUser.js";
 
 export default function SignUpPage() {
   const [form, setForm] = useState({});
+  const { postUserLoading, postUserError, postUser } = usePostUser();
+  const { signInUserLoading, signInUserError, signInUser } = useSignInUser();
 
   const handleForm = ({ target: { value, name } }) => {
     setForm({ ...form, [name]: value });
+  };
+
+  const sendForm = async (e) => {
+    e.preventDefault();
+    console.log(form);
+    if (form?.password !== form?.confirmPassword) {
+      alert("As senhas não estão iguais");
+      return;
+    }
+    try {
+      await postUser(form);
+      alert("Cadastro realizado com sucesso! Fazendo login...");
+      delete form.name;
+      delete form.confirmPassword;
+      const userInfo = await signInUser(form);
+      console.log(userInfo)
+    } catch (err) {
+      console.log(err);
+      alert(err.response.data);
+    }
   };
 
   return (
@@ -19,11 +43,12 @@ export default function SignUpPage() {
         <h1>Sign Up</h1>
         <FaUserPlus />
       </Title>
-      <Form>
+      <Form onSubmit={sendForm}>
         <Input
           type={"text"}
           id={"name"}
           htmlFor={"name"}
+          name={"name"}
           handleEvent={handleForm}
         >
           Name
@@ -32,6 +57,7 @@ export default function SignUpPage() {
           type={"email"}
           id={"email"}
           htmlFor={"email"}
+          name={"email"}
           handleEvent={handleForm}
         >
           E-mail
@@ -40,6 +66,7 @@ export default function SignUpPage() {
           type={"password"}
           id={"password"}
           htmlFor={"password"}
+          name={"password"}
           handleEvent={handleForm}
         >
           Password
@@ -48,6 +75,7 @@ export default function SignUpPage() {
           type={"password"}
           id={"confirmPassword"}
           htmlFor={"confirmPassword"}
+          name={"confirmPassword"}
           handleEvent={handleForm}
         >
           Confirm Password
@@ -116,5 +144,4 @@ const StyledLink = styled(Link)`
   padding: 13px;
   cursor: pointer;
   user-select: none;
-
-`
+`;
