@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import styled from "styled-components";
 import SignUpPage from "./pages/SignUpPage";
+import SignInPage from "./pages/SignInPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route element={<RankingPage />} path="/" />
           <Route element={<SignUpPage />} path="/sign-up" />
+          <Route element={<SignInPage />} path="/sign-in" />
         </Routes>
       </BrowserRouter>
     </AppStyle>

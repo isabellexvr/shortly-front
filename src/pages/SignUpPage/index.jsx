@@ -1,12 +1,9 @@
-import styled from "styled-components";
-import { colors } from "../../assets/colors.js";
 import { FaUserPlus } from "react-icons/fa";
-import { Button } from "../../components/Header";
 import Input from "../../components/Input/index.jsx";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import usePostUser from "../../services/hooks/api/usePostUser.js";
 import useSignInUser from "../../services/hooks/api/useSignInUser.js";
+import { Form, Title, StyledLink, Button } from "../styles.js";
 
 export default function SignUpPage() {
   const [form, setForm] = useState({});
@@ -22,6 +19,10 @@ export default function SignUpPage() {
     console.log(form);
     if (form?.password !== form?.confirmPassword) {
       alert("As senhas não estão iguais");
+      return;
+    }
+    if(form?.password.length < 6 ){
+      alert("A senha precisa ter 6 caracteres ou mais.")
       return;
     }
     try {
@@ -40,7 +41,7 @@ export default function SignUpPage() {
   return (
     <>
       <Title>
-        <h1>Sign Up</h1>
+        <h1>Cadastro</h1>
         <FaUserPlus />
       </Title>
       <Form onSubmit={sendForm}>
@@ -51,7 +52,7 @@ export default function SignUpPage() {
           name={"name"}
           handleEvent={handleForm}
         >
-          Name
+          Nome
         </Input>
         <Input
           type={"email"}
@@ -69,7 +70,7 @@ export default function SignUpPage() {
           name={"password"}
           handleEvent={handleForm}
         >
-          Password
+          Senha
         </Input>
         <Input
           type={"password"}
@@ -78,70 +79,19 @@ export default function SignUpPage() {
           name={"confirmPassword"}
           handleEvent={handleForm}
         >
-          Confirm Password
+          Confirme a Senha
         </Input>
         <StyledLink to={"/sign-in"}>
-          Already registered? Sign in instead!
+          Já está registrado? Faça login!
         </StyledLink>
         <Button
           type="submit"
           fontColor="white"
-          backgroundColor={colors.lightBlue}
+          disabled={postUserLoading || signInUserLoading}
         >
-          Confirm
+          Confirmar
         </Button>
       </Form>
     </>
   );
 }
-
-const Form = styled.form`
-  width: 30vw;
-  margin-top: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(0, 75, 95, 0.9);
-  padding-top: 30px;
-  padding-bottom: 30px;
-  border-radius: 20px;
-  user-select: none;
-
-  > button {
-    margin-top: 15px;
-  }
-`;
-
-export const Title = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: fit-content;
-  font-family: "DM Sans", sans-serif;
-  cursor: default;
-  user-select: none;
-  > h1 {
-    font-size: 55px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    font-weight: 700;
-    color: ${colors.darkBlue};
-    -webkit-text-stroke: 1.5px ${colors.darkBlue};
-  }
-  > svg {
-    font-size: 50px;
-    color: ${colors.lightBlue};
-  }
-`;
-
-const StyledLink = styled(Link)`
-  all: unset;
-  font-family: "DM Sans", sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  color: white;
-  padding: 13px;
-  cursor: pointer;
-  user-select: none;
-`;

@@ -47,4 +47,8 @@ export const Button = styled.button`
   font-weight: 700;
   font-size: 18px;
   line-height: 25px;
+  :disabled{
+    opacity: 0.7;
+    cursor: default;
+  }
 `;
