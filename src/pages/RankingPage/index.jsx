@@ -11,7 +11,7 @@ import {
   ViewsCount,
   TwoLeftContainer,
   RankingLeft,
-  RankingTitle
+  RankingTitle,
 } from "./styles";
 
 const MOCKEDPODIUM = [
@@ -29,7 +29,7 @@ const MOCKEDPODIUM = [
   },
   {
     id: 63,
-    name: "Corno Manso",
+    name: "ScaredDude",
     linksCount: "349",
     visitCount: "900k",
   },
@@ -44,7 +44,7 @@ const MOCKEDLEFT = [
   },
   {
     id: 8,
-    name: "Delícia",
+    name: "Delicinha",
     linksCount: "51",
     visitCount: "821k",
   },
@@ -83,7 +83,7 @@ export default function RankingPage() {
           <RankingContainer>
             <RankingHeader>
               <div className="subtitle">
-                <h2>Top Most Clicked Shortened URLs Owners</h2>
+                <h2>Donos das URLs mais clicadas!</h2>
               </div>
             </RankingHeader>
             <PodiumContainer>
@@ -96,7 +96,7 @@ export default function RankingPage() {
                   <h2>{p.linksCount} URLs</h2>
                   <ViewsCount>
                     <HiCursorClick />
-                    {p.visitCount} Views
+                    {p.visitCount} Cliques
                   </ViewsCount>
                 </Podium>
               ))}

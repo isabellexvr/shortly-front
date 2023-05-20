@@ -43,9 +43,9 @@ export const RankingHeader = styled.div`
   margin-bottom: 35px;
   > .subtitle {
     h2 {
-      font-size: 17px;
-      font-weight: 500;
-      color: black;
+      font-size: 20px;
+      font-weight: 700;
+      color: ${colors.lightGrey};
     }
   }
 `;
@@ -71,9 +71,10 @@ export const Podium = styled.div`
     font-size: 1.25rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     font-weight: 700;
     text-align: center;
+    width: 100%;
     > img {
       width: 2.3em;
     }
@@ -94,9 +95,9 @@ export const Podium = styled.div`
 
 export const ViewsCount = styled.div`
   background-color: ${colors.lightGrey};
-  width: 6.7em;
-  height: 1.6em;
-  border-radius: 1vw;
+  width: 130px;
+  height: 30px;
+  border-radius: 10px;
   padding: 5px;
   box-sizing: border-box;
   display: flex;
@@ -115,9 +116,9 @@ export const ViewsCount = styled.div`
 `;
 
 export const TwoLeftContainer = styled.div`
-  margin-top: 15px;
-  width: 75%;
+  width: 80%;
   height: fit-content;
+  margin-top: 5px;
 `;
 
 export const RankingLeft = styled.div`
@@ -125,7 +126,7 @@ export const RankingLeft = styled.div`
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 18px;
   background-color: ${colors.mediumBlue};
   border-radius: 10px;
   padding: 9px;

@@ -8,10 +8,10 @@ export default function Header() {
   return (
     <HeaderContainer>
       <Button fontColor="black" backgroundColor="white">
-        About
+        Sobre
       </Button>
       <Button fontColor="white" backgroundColor={colors.lightBlue} onClick={() => navigate("/sign-up")}>
-        Get Started
+        Comece aqui
       </Button>
     </HeaderContainer>
   );

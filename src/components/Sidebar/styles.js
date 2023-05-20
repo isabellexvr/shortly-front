@@ -81,7 +81,7 @@ z-index 1;
   }
   .logout{
     margin-bottom: 10px;
-    font-size: 23px;
+    font-size: 27px;
   }
 `;
 
@@ -127,6 +127,6 @@ z-index 1;
   }
   .logout{
     margin-bottom: 10px;
-    font-size: 23px;
+    font-size: 27px;
   }
 `;
