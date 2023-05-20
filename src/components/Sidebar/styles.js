@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { colors } from "../../assets/colors";
+import { RiTrophyFill } from "react-icons/ri";
 
 export const LogoAppear = keyframes`
     from{opacity: 0;}
@@ -17,7 +18,7 @@ export const LogoFull = styled.img`
   cursor: pointer;
   padding: 10px;
   width: 140px;
-`
+`;
 
 export const ExpandSidebar = keyframes`
 from {width: 50px}
@@ -54,22 +55,18 @@ z-index 1;
     justify-content: space-evenly;
     align-items: center;
   }
-  .icons{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 70vh;
-    >svg{
-      margin-top: 25px;
-      font-size: 23px;
-      cursor: pointer;
-    }
-  }
   .logout{
     margin-bottom: 10px;
     font-size: 23px;
   }
+`;
+
+export const Icons = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 70vh;
 `;
 
 export const ExpandedSidebar = styled.div`
