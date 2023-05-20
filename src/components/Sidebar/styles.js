@@ -1,11 +1,32 @@
 import styled, { keyframes } from "styled-components";
 import { colors } from "../../assets/colors";
-import { RiTrophyFill } from "react-icons/ri";
 
-export const LogoAppear = keyframes`
-    from{opacity: 0;}
-    to{opacity: 1;}
+export const GrowBackground = keyframes`
+  from{
+    width: 40px;
+  }
+  to{
+    width: 130px;
+  }
 `;
+
+const DecreaseBackground = keyframes`
+  from{
+    width: 130px;
+  }
+  to{
+    width: 40px;
+  }
+`
+
+const IconTextAppear = keyframes`
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+`
 
 export const Logo = styled.img`
   height: 40px;
@@ -23,12 +44,12 @@ export const LogoFull = styled.img`
 export const ExpandSidebar = keyframes`
 from {width: 50px}
     to {
-        width: 200px;
+        width: 180px;
     };
 `;
 
 export const RetractSidebar = keyframes`
-    from {width: 200px}
+    from {width: 180px}
     to{width: 60px}
 `;
 
@@ -41,7 +62,7 @@ z-index 1;
   left: 0;
   top: 0;
   animation: ${(p) =>
-    p.showSideBar !== null ? RetractSidebar : "none"} 1s linear;
+    p.showSideBar !== null ? RetractSidebar : "none"} 0.5s linear;
   color: white;
   display: flex;
   flex-direction: column;
@@ -55,6 +76,9 @@ z-index 1;
     justify-content: space-evenly;
     align-items: center;
   }
+  .icon{
+    animation: ${DecreaseBackground} 0.5s;
+  }
   .logout{
     margin-bottom: 10px;
     font-size: 23px;
@@ -67,31 +91,42 @@ export const Icons = styled.div`
   flex-direction: column;
   align-items: center;
   height: 70vh;
+  color: white;
 `;
 
 export const ExpandedSidebar = styled.div`
 z-index 1;
   height: 100vh;
-  width: 200px;
+  width: 180px;
   background-color: ${colors.darkBlue};
   position: fixed;
   left: 0;
   top: 0;
-  animation: ${ExpandSidebar} 1s linear;
-  font-family: "DM Sans", sans-serif;
+  animation: ${(p) =>
+    p.showSideBar !== null ? ExpandSidebar : "none"} 0.5s linear;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   .header {
     margin-top: 10px;
-    animation: ${LogoAppear} 5s ease-in-out;
+    animation: ${IconTextAppear} 2s ease-in-out;
     height: 50px;
     width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    > h1 {
-      cursor: pointer;
-      font-size: 32px;
-      color: ${colors.lightBlue};
-      font-weight: 700;
+  }
+  .icon{
+    animation: ${GrowBackground} 1s;
+    >h1{
+      animation: ${IconTextAppear} 1.5s ease-in-out;
     }
+
+  }
+  .logout{
+    margin-bottom: 10px;
+    font-size: 23px;
   }
 `;

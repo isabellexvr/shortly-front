@@ -9,16 +9,15 @@ import {
   LogoFull,
   Icons,
 } from "./styles";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { FaUserPlus, FaUserCheck } from "react-icons/fa";
 import { RiTrophyFill } from "react-icons/ri";
 import Icon from "./Icon";
 
 export default function Sidebar() {
   const [showSidebar, setShowSidebar] = useState(null);
-  const [selectedIcon, setSelectedIcon] = useState(0);
-  const navigate = useNavigate();
   const location = useLocation();
+  console.log(location.pathname);
 
   return (
     <>
@@ -30,18 +29,21 @@ export default function Sidebar() {
           <Icons>
             <Icon
               route={location.pathname}
-              name="trophy"
+              name="Ranking"
               ReactIcon={RiTrophyFill}
+              isSidebarOpened={false}
             />
             <Icon
               route={location.pathname}
-              name="sign-in"
+              name="Login"
               ReactIcon={FaUserCheck}
+              isSidebarOpened={false}
             />
             <Icon
               route={location.pathname}
-              name="sign-up"
+              name="Cadastro"
               ReactIcon={FaUserPlus}
+              isSidebarOpened={false}
             />
           </Icons>
 
@@ -54,6 +56,29 @@ export default function Sidebar() {
         <ExpandedSidebar>
           <div className="header" onClick={() => setShowSidebar(!showSidebar)}>
             <LogoFull src={logoFull} />
+          </div>
+          <Icons>
+            <Icon
+              route={location.pathname}
+              name="Ranking"
+              ReactIcon={RiTrophyFill}
+              isSidebarOpened={true}
+            />
+            <Icon
+              route={location.pathname}
+              name="Login"
+              ReactIcon={FaUserCheck}
+              isSidebarOpened={true}
+            />
+            <Icon
+              route={location.pathname}
+              name="Cadastro"
+              ReactIcon={FaUserPlus}
+              isSidebarOpened={true}
+            />
+          </Icons>
+          <div className="logout">
+            <IoIosExit />
           </div>
         </ExpandedSidebar>
       )}

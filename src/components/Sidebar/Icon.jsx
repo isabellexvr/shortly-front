@@ -2,16 +2,20 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { colors } from "../../assets/colors";
 
-export default function Icon({ route, name, ReactIcon }) {
+export default function Icon({ route, name, ReactIcon, isSidebarOpened }) {
   const navigate = useNavigate();
-
+  console.log(isSidebarOpened)
   return (
-    <IconStyle isSelected={route === handleRoute(name)}>
-      <ReactIcon
-        onClick={() => {
-          navigate(handleRoute(`${name}`));
-        }}
-      />
+    <IconStyle
+    className="icon"
+      onClick={() => {
+        navigate(handleRoute(`${name}`));
+      }}
+      isSelected={route === handleRoute(name)}
+      isSidebarOpened={isSidebarOpened}
+    >
+      <ReactIcon />
+      {isSidebarOpened && <h1>{name}</h1>}
     </IconStyle>
   );
 }
@@ -19,31 +23,39 @@ export default function Icon({ route, name, ReactIcon }) {
 const IconStyle = styled.div`
   > svg {
     font-size: 23px;
-    cursor: pointer;
     padding: 7px;
     border-radius: 5px;
     transition: 0.5s ease-in-out;
-    :hover {
-      background-color: ${colors.mediumBlue};
-    }
   }
   background-color: ${(p) => (p.isSelected ? colors.lightBlue : "none")};
-  pointer-events:${(p) => (p.isSelected ? "none" : "initial")};
+  pointer-events: ${(p) => (p.isSelected ? "none" : "initial")};
+  width: ${(p) => (p.isSidebarOpened ? "130px" : "fit-content")};
+  font-family: "DM Sans", sans-serif;
   border-radius: 5px;
   height: fit-content;
   margin-top: 25px;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  cursor: pointer;
+  user-select: none;
+  :hover {
+    background-color: ${colors.mediumBlue};
+  }
+  > h1 {
+    font-size: 17px;
+    padding-right: 5px;
+    margin-left: 2px;
+    font-weight: 700;
+  }
 `;
 
 const handleRoute = (icon) => {
   switch (icon) {
-    case "trophy":
+    case "Ranking":
       return "/";
-    case "sign-in":
+    case "Login":
       return "/sign-in";
-    case "sign-up":
+    case "Cadastro":
       return "/sign-up";
   }
 };
