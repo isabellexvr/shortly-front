@@ -3,10 +3,12 @@ import { FaUserCheck } from "react-icons/fa";
 import { Form, Title, StyledLink, Button } from "../styles.js";
 import { useState } from "react";
 import useSignInUser from "../../services/hooks/api/useSignInUser";
+import useUserInfo from "../../contexts/hooks/useUserInfo";
 
 export default function SignInPage() {
   const [form, setForm] = useState({});
   const { signInUserLoading, signInUserError, signInUser } = useSignInUser();
+  const { setUserInfo } = useUserInfo();
 
   const handleForm = ({ target: { value, name } }) => {
     setForm({ ...form, [name]: value });
@@ -16,7 +18,7 @@ export default function SignInPage() {
     e.preventDefault();
     try {
       const userInfo = await signInUser(form);
-      console.log(userInfo);
+      setUserInfo(userInfo);
     } catch (err) {
       console.log(err);
       alert(err.response.data);
@@ -29,7 +31,7 @@ export default function SignInPage() {
         <h1>Login</h1>
         <FaUserCheck />
       </Title>
-      <Form onSubmit={sendForm} >
+      <Form onSubmit={sendForm}>
         <Input
           type={"email"}
           id={"email"}

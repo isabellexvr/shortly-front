@@ -5,20 +5,23 @@ import Sidebar from "./components/Sidebar";
 import styled from "styled-components";
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
+import UserInfoProvider from "./contexts/UserInfoContext";
 
 function App() {
   return (
-    <AppStyle>
-      <BrowserRouter>
-        <Header />
-        <Sidebar />
-        <Routes>
-          <Route element={<RankingPage />} path="/" />
-          <Route element={<SignUpPage />} path="/sign-up" />
-          <Route element={<SignInPage />} path="/sign-in" />
-        </Routes>
-      </BrowserRouter>
-    </AppStyle>
+    <UserInfoProvider>
+      <AppStyle>
+        <BrowserRouter>
+          <Header />
+          <Sidebar />
+          <Routes>
+            <Route element={<RankingPage />} path="/" />
+            <Route element={<SignUpPage />} path="/sign-up" />
+            <Route element={<SignInPage />} path="/sign-in" />
+          </Routes>
+        </BrowserRouter>
+      </AppStyle>
+    </UserInfoProvider>
   );
 }
 

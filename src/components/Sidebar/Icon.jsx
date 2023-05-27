@@ -4,11 +4,13 @@ import { colors } from "../../assets/colors";
 
 export default function Icon({ route, name, ReactIcon, isSidebarOpened }) {
   const navigate = useNavigate();
-  console.log(isSidebarOpened)
   return (
     <IconStyle
     className="icon"
       onClick={() => {
+        if(route === "logout-method"){
+          console.log("aaa")
+        }
         navigate(handleRoute(`${name}`));
       }}
       isSelected={route === handleRoute(name)}

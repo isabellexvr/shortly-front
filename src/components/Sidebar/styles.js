@@ -17,7 +17,7 @@ const DecreaseBackground = keyframes`
   to{
     width: 40px;
   }
-`
+`;
 
 const IconTextAppear = keyframes`
   from{
@@ -26,7 +26,7 @@ const IconTextAppear = keyframes`
   to{
     opacity: 1;
   }
-`
+`;
 
 export const Logo = styled.img`
   height: 40px;
@@ -80,8 +80,8 @@ z-index 1;
     animation: ${DecreaseBackground} 0.5s;
   }
   .logout{
-    margin-bottom: 10px;
-    font-size: 27px;
+    margin-bottom: 20px;
+    font-size: 30px;
   }
 `;
 
@@ -126,7 +126,8 @@ z-index 1;
 
   }
   .logout{
-    margin-bottom: 10px;
-    font-size: 27px;
+    margin-bottom: 20px;
+    font-size: 30px;
   }
+
 `;

@@ -4,11 +4,13 @@ import { useState } from "react";
 import usePostUser from "../../services/hooks/api/usePostUser.js";
 import useSignInUser from "../../services/hooks/api/useSignInUser.js";
 import { Form, Title, StyledLink, Button } from "../styles.js";
+import useUserInfo from "../../contexts/hooks/useUserInfo.js";
 
 export default function SignUpPage() {
   const [form, setForm] = useState({});
   const { postUserLoading, postUserError, postUser } = usePostUser();
   const { signInUserLoading, signInUserError, signInUser } = useSignInUser();
+  const { setUserInfo } = useUserInfo();
 
   const handleForm = ({ target: { value, name } }) => {
     setForm({ ...form, [name]: value });
@@ -21,8 +23,8 @@ export default function SignUpPage() {
       alert("As senhas não estão iguais");
       return;
     }
-    if(form?.password.length < 6 ){
-      alert("A senha precisa ter 6 caracteres ou mais.")
+    if (form?.password.length < 6) {
+      alert("A senha precisa ter 6 caracteres ou mais.");
       return;
     }
     try {
@@ -31,7 +33,9 @@ export default function SignUpPage() {
       delete form.name;
       delete form.confirmPassword;
       const userInfo = await signInUser(form);
-      console.log(userInfo)
+      setUserInfo(userInfo);
+
+      console.log(userInfo);
     } catch (err) {
       console.log(err);
       alert(err.response.data);
@@ -81,9 +85,7 @@ export default function SignUpPage() {
         >
           Confirme a Senha
         </Input>
-        <StyledLink to={"/sign-in"}>
-          Já está registrado? Faça login!
-        </StyledLink>
+        <StyledLink to={"/sign-in"}>Já está registrado? Faça login!</StyledLink>
         <Button
           type="submit"
           fontColor="white"

@@ -17,7 +17,6 @@ import Icon from "./Icon";
 export default function Sidebar() {
   const [showSidebar, setShowSidebar] = useState(null);
   const location = useLocation();
-  console.log(location.pathname);
 
   return (
     <>
@@ -48,7 +47,12 @@ export default function Sidebar() {
           </Icons>
 
           <div className="logout">
-            <IoIosExit />
+          <Icon
+              route={"logout-method"}
+              name="Cadastro"
+              ReactIcon={IoIosExit}
+              isSidebarOpened={false}
+            />
           </div>
         </CompressedSidebar>
       )}
@@ -78,7 +82,12 @@ export default function Sidebar() {
             />
           </Icons>
           <div className="logout">
-            <IoIosExit />
+          <Icon
+              route={"logout-method"}
+              name="Logout"
+              ReactIcon={IoIosExit}
+              isSidebarOpened={true}
+            />
           </div>
         </ExpandedSidebar>
       )}

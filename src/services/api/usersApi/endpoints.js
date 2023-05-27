@@ -1,4 +1,4 @@
 export const usersEndpoints = {
-    create: "/signup",
-    signIn: "/signin",
+    create: "users/sign-up",
+    signIn: "auth/sign-in",
 }
