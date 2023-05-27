@@ -6,6 +6,7 @@ import styled from "styled-components";
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
 import UserInfoProvider from "./contexts/UserInfoContext";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route element={<RankingPage />} path="/" />
             <Route element={<SignUpPage />} path="/sign-up" />
             <Route element={<SignInPage />} path="/sign-in" />
+            <Route element={<HomePage />} path="/home" />
           </Routes>
         </BrowserRouter>
       </AppStyle>

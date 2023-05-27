@@ -5,6 +5,7 @@ import { useState } from "react";
 import useSignInUser from "../../services/hooks/api/useSignInUser";
 import useUserInfo from "../../contexts/hooks/useUserInfo";
 import { useNavigate } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 export default function SignInPage() {
   const [form, setForm] = useState({});
@@ -20,7 +21,9 @@ export default function SignInPage() {
     e.preventDefault();
     try {
       const userInfo = await signInUser(form);
-      setUserInfo(userInfo);
+      const decoded = jwtDecode(userInfo);
+      setUserInfo(decoded);
+      localStorage.setItem("userInfo", JSON.stringify(decoded));
       navigate("/home");
     } catch (err) {
       console.log(err);

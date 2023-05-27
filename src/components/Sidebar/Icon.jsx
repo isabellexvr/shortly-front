@@ -60,5 +60,7 @@ const handleRoute = (icon) => {
       return "/sign-in";
     case "Cadastro":
       return "/sign-up";
+    case "Home":
+      return "/home";
   }
 };
