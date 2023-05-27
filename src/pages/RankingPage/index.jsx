@@ -13,6 +13,7 @@ import {
   RankingLeft,
   RankingTitle,
 } from "./styles";
+import useUserInfo from "../../contexts/hooks/useUserInfo";
 
 const MOCKEDPODIUM = [
   {
@@ -54,7 +55,8 @@ export default function RankingPage() {
   const [ranking, setRanking] = useState([]);
   const [podium, setPodium] = useState([]);
   const [topTwoLeft, setTopTwoLeft] = useState([]);
-
+  const { userInfo, setUserInfo } = useUserInfo();
+  
   useEffect(() => {
     async function getApiData() {
       try {

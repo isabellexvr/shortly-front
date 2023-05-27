@@ -77,7 +77,7 @@ z-index 1;
     align-items: center;
   }
   .icon{
-    animation: ${DecreaseBackground} 0.5s;
+    animation: ${ p=> p.isSideBarOpened !== null ? DecreaseBackground: "none"} 0.5s;
   }
   .logout{
     margin-bottom: 20px;
@@ -125,7 +125,7 @@ z-index 1;
     }
 
   }
-  .logout{
+    .logout{
     margin-bottom: 20px;
     font-size: 30px;
   }

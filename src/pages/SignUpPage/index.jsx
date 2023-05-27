@@ -5,12 +5,14 @@ import usePostUser from "../../services/hooks/api/usePostUser.js";
 import useSignInUser from "../../services/hooks/api/useSignInUser.js";
 import { Form, Title, StyledLink, Button } from "../styles.js";
 import useUserInfo from "../../contexts/hooks/useUserInfo.js";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUpPage() {
   const [form, setForm] = useState({});
   const { postUserLoading, postUserError, postUser } = usePostUser();
   const { signInUserLoading, signInUserError, signInUser } = useSignInUser();
   const { setUserInfo } = useUserInfo();
+  const navigate = useNavigate();
 
   const handleForm = ({ target: { value, name } }) => {
     setForm({ ...form, [name]: value });
@@ -34,7 +36,7 @@ export default function SignUpPage() {
       delete form.confirmPassword;
       const userInfo = await signInUser(form);
       setUserInfo(userInfo);
-
+      navigate("/home");
       console.log(userInfo);
     } catch (err) {
       console.log(err);

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { colors } from "../../assets/colors";
 
 export default function Icon({ route, name, ReactIcon, isSidebarOpened }) {
+  console.log(isSidebarOpened)
   const navigate = useNavigate();
   return (
     <IconStyle

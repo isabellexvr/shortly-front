@@ -4,11 +4,13 @@ import { Form, Title, StyledLink, Button } from "../styles.js";
 import { useState } from "react";
 import useSignInUser from "../../services/hooks/api/useSignInUser";
 import useUserInfo from "../../contexts/hooks/useUserInfo";
+import { useNavigate } from "react-router-dom";
 
 export default function SignInPage() {
   const [form, setForm] = useState({});
   const { signInUserLoading, signInUserError, signInUser } = useSignInUser();
   const { setUserInfo } = useUserInfo();
+  const navigate = useNavigate();
 
   const handleForm = ({ target: { value, name } }) => {
     setForm({ ...form, [name]: value });
@@ -19,6 +21,7 @@ export default function SignInPage() {
     try {
       const userInfo = await signInUser(form);
       setUserInfo(userInfo);
+      navigate("/home");
     } catch (err) {
       console.log(err);
       alert(err.response.data);
