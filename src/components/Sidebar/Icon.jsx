@@ -2,15 +2,22 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { colors } from "../../assets/colors";
 
-export default function Icon({ route, name, ReactIcon, isSidebarOpened }) {
-  console.log(isSidebarOpened)
+export default function Icon({
+  route,
+  name,
+  ReactIcon,
+  isSidebarOpened,
+  setUserInfo,
+}) {
   const navigate = useNavigate();
   return (
     <IconStyle
-    className="icon"
+      className="icon"
       onClick={() => {
-        if(route === "logout-method"){
-          console.log("aaa")
+        if (route === "logout-method") {
+          localStorage.removeItem("userInfo");
+          setUserInfo(null);
+          navigate("/ranking");
         }
         navigate(handleRoute(`${name}`));
       }}

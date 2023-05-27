@@ -32,6 +32,7 @@ export default function Sidebar() {
                 name="Logout"
                 ReactIcon={IoIosExit}
                 isSidebarOpened={false}
+                setUserInfo={setUserInfo}
               />
             )}
           </div>
