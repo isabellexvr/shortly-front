@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 export const Form = styled.form`
   width: 30vw;
   margin-top: 15px;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgb(0, 75, 95, 0.9);
   padding-top: 30px;
   padding-bottom: 30px;
   border-radius: 20px;

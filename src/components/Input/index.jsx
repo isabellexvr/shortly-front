@@ -15,11 +15,14 @@ const InputContainer = styled.div`
   font-family: "DM Sans", sans-serif;
   margin-bottom: 20px;
   font-weight: 500;
+  height: fit-content;
+  box-sizing: border-box;
+
   > label {
     position: absolute;
-    left: 1px;
-    bottom: 7px;
-    color: white;
+    left: 10px;
+    bottom: 18px;
+    color: "#4e8591";
     opacity: 0.5;
     cursor: text;
     font-size: 20px;
@@ -29,15 +32,19 @@ const InputContainer = styled.div`
     all: unset;
     border-bottom: 2px solid white;
     outline: 0;
-    padding: 5px;
-    box-sizing: border-box;
+    padding-left: 12px;
     font-size: 20px;
     width: 22vw;
     height: 45px;
-    color: white;
+    color: ${colors.darkBlue};
+    background-color: ${colors.lightGrey};
+    border-radius: 11px;
+    height: 55px;
+    box-sizing: border-box;
+
     :focus,
     :valid {
-      border-bottom: 2px solid ${colors.mediumBlue};
+      border-bottom: 4px solid ${colors.mediumBlue};
       transition: 0.5s ease-in-out;
     }
     :focus ~ label,
