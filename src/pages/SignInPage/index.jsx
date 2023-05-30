@@ -1,7 +1,7 @@
 import Input from "../../components/Input";
 import { FaUserCheck } from "react-icons/fa";
 import { Form, Title, StyledLink, Button } from "../styles.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useSignInUser from "../../services/hooks/api/useSignInUser";
 import useUserInfo from "../../contexts/hooks/useUserInfo";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ export default function SignInPage() {
   const [form, setForm] = useState({});
   const { signInUserLoading, signInUserError, signInUser } = useSignInUser();
   const { setUserInfo } = useUserInfo();
+  const isLogged = localStorage.getItem("userInfo");
   const navigate = useNavigate();
 
   const handleForm = ({ target: { value, name } }) => {
@@ -30,6 +31,13 @@ export default function SignInPage() {
       alert(err.response.data);
     }
   };
+
+  useEffect(()=>{
+    if(isLogged){
+      setUserInfo(JSON.parse(isLogged));
+      navigate("/home")
+    }
+  },[])
 
   return (
     <>

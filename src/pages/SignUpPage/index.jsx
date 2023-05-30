@@ -1,6 +1,6 @@
 import { FaUserPlus } from "react-icons/fa";
 import Input from "../../components/Input/index.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import usePostUser from "../../services/hooks/api/usePostUser.js";
 import useSignInUser from "../../services/hooks/api/useSignInUser.js";
 import { Form, Title, StyledLink, Button } from "../styles.js";
@@ -12,6 +12,8 @@ export default function SignUpPage() {
   const { postUserLoading, postUserError, postUser } = usePostUser();
   const { signInUserLoading, signInUserError, signInUser } = useSignInUser();
   const { setUserInfo } = useUserInfo();
+  const isLogged = localStorage.getItem("userInfo");
+
   const navigate = useNavigate();
 
   const handleForm = ({ target: { value, name } }) => {
@@ -43,6 +45,13 @@ export default function SignUpPage() {
       alert(err.response.data);
     }
   };
+
+  useEffect(() => {
+    if (isLogged) {
+      setUserInfo(JSON.parse(isLogged));
+      navigate("/home");
+    }
+  }, []);
 
   return (
     <>
