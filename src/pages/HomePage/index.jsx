@@ -5,9 +5,16 @@ import Input from "../../components/Input";
 import { colors } from "../../assets/colors";
 import { ImAttachment } from "react-icons/im";
 import { IconContext } from "react-icons/lib";
+import useUserInfo from "../../contexts/hooks/useUserInfo";
+import useGetUserUrls from "../../services/hooks/api/useGetUserUrls";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 export default function HomePage() {
   const [url, setUrl] = useState("");
+  const [userUrls, setUserUrls] = useState([]);
+  const { userInfo, setUserInfo } = useUserInfo();
+  const { getUserUrls, getUserUrlsLoading, getUserUrlsError } =
+    useGetUserUrls();
 
   function sendShorten(e) {
     e.preventDefault();
@@ -22,6 +29,20 @@ export default function HomePage() {
       return false;
     }
   }
+
+  useEffect(() => {
+    async function aa() {
+      try {
+        const urls = await getUserUrls();
+        setUserUrls(urls.urls);
+        console.log(urls);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    aa();
+  }, []);
+
   return (
     <>
       <ShortenForm onSubmit={sendShorten}>
@@ -38,19 +59,32 @@ export default function HomePage() {
             Links que cabem no bolso
           </label>
           <IconLabel>
-
-              <ImAttachment />
-
+            <ImAttachment />
           </IconLabel>
         </ShortenInput>
         <ShortenButton type="submit">Encurtar Link</ShortenButton>
       </ShortenForm>
+      <UrlsContainer>
+        {userUrls.map((u, i) => (
+          <UrlContainer key={i}>
+            <UrlInfo>
+              <a href={u.originalUrl}>{u.originalUrl}</a>
+              <a>{u.shortenedUrl}</a>
+              <h1>{u.visitsCounter}</h1>
+            </UrlInfo>
+            <DeleteButton>
+              <RiDeleteBin6Line />
+            </DeleteButton>
+          </UrlContainer>
+        ))}
+      </UrlsContainer>
     </>
   );
 }
 
 const ShortenForm = styled.form`
   display: flex;
+  background-color: yellow;
 `;
 
 const ShortenInput = styled.div`
@@ -60,7 +94,7 @@ const ShortenInput = styled.div`
   font-weight: 500;
   height: fit-content;
   box-sizing: border-box;
-  margin-right: 35px;
+  margin-right: 25px;
   > .title {
     position: absolute;
     left: 36px;
@@ -126,4 +160,48 @@ const IconLabel = styled.label`
   left: 13px;
   bottom: 18px;
   color: ${colors.lightBlue};
+`;
+
+const UrlsContainer = styled.div`
+  background-color: red;
+  margin-top: 20px;
+  width: 58.05vw;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const UrlInfo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: pink;
+  height: 50px;
+  margin-bottom: 10px;
+  width: 90%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  > div {
+    > a {
+    }
+  }
+`;
+
+const DeleteButton = styled.button`
+  all: unset;
+  background-color: ${colors.lightBlue};
+  width: 10%;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 50px;
+`;
+
+const UrlContainer = styled.div`
+  display: flex;
 `;

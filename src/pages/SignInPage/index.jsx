@@ -11,7 +11,7 @@ export default function SignInPage() {
   const [form, setForm] = useState({});
   const { signInUserLoading, signInUserError, signInUser } = useSignInUser();
   const { setUserInfo } = useUserInfo();
-  const isLogged = localStorage.getItem("userInfo");
+
   const navigate = useNavigate();
 
   const handleForm = ({ target: { value, name } }) => {
@@ -25,19 +25,25 @@ export default function SignInPage() {
       const decoded = jwtDecode(userInfo);
       setUserInfo(decoded);
       localStorage.setItem("userInfo", JSON.stringify(decoded));
+      localStorage.setItem("token", JSON.stringify(userInfo));
       navigate("/home");
     } catch (err) {
       console.log(err);
-      alert(err.response.data);
     }
   };
 
-  useEffect(()=>{
-    if(isLogged){
-      setUserInfo(JSON.parse(isLogged));
-      navigate("/home")
+  const userInfo = localStorage.getItem("userInfo");
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (userInfo || token) {
+      setUserInfo({
+        userInfo: JSON.parse(userInfo),
+        token: JSON.parse(token),
+      });
+      navigate("/home");
     }
-  },[])
+  }, []);
 
   return (
     <>

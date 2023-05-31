@@ -111,7 +111,7 @@ z-index 1;
   justify-content: space-between;
   .header {
     margin-top: 10px;
-    animation: ${IconTextAppear} 2s ease-in-out;
+    animation: ${IconTextAppear} 1.5s ease-in-out;
     height: 50px;
     width: 100%;
     display: flex;
@@ -119,9 +119,9 @@ z-index 1;
     align-items: center;
   }
   .icon{
-    animation: ${GrowBackground} 1s;
+    animation: ${GrowBackground} 0.5s;
     >h1{
-      animation: ${IconTextAppear} 1.5s ease-in-out;
+      animation: ${IconTextAppear} 1s ease-in-out;
     }
 
   }

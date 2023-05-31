@@ -10,4 +10,10 @@ export const usersApi = {
     const res = await api.post(usersEndpoints.signIn, body);
     return res.data;
   },
+  userUrls: async (token) => {
+    const res = await api.get(usersEndpoints.userUrls, {
+      headers: { Authorization: "Bearer " + token },
+    });
+    return res.data;
+  },
 };
