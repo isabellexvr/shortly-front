@@ -8,8 +8,8 @@ export const RankingContainer = styled.div`
   width: 55vw;
   height: fit-content;
   border-radius: 20px;
-  background-color: rgb(0, 75, 95, 0.9);
   padding: 30px;
+  border: 2.5px solid ${colors.lightBlue};
   box-sizing: border-box;
   font-family: "DM Sans", sans-serif;
 `;
@@ -45,7 +45,7 @@ export const RankingHeader = styled.div`
     h2 {
       font-size: 20px;
       font-weight: 700;
-      color: ${colors.lightGrey};
+      color: ${colors.darkBlue};
     }
   }
 `;

@@ -14,6 +14,7 @@ export const Form = styled.form`
   padding-bottom: 30px;
   border-radius: 20px;
   user-select: none;
+  border: 2.5px solid ${colors.lightBlue};
   > button {
     margin-top: 15px;
   }
@@ -47,11 +48,11 @@ export const StyledLink = styled(Link)`
   font-family: "DM Sans", sans-serif;
   font-weight: 600;
   font-size: 16px;
-  color: white;
+  color: ${colors.darkBlue};
   padding: 10px;
   cursor: pointer;
   user-select: none;
-  width: 22vw;
+  width: 21vw;
   text-align: center;
   line-height: 18px;
 `;

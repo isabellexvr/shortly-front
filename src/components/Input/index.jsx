@@ -17,7 +17,6 @@ const InputContainer = styled.div`
   font-weight: 500;
   height: fit-content;
   box-sizing: border-box;
-
   > label {
     position: absolute;
     left: 10px;
@@ -41,7 +40,6 @@ const InputContainer = styled.div`
     border-radius: 11px;
     height: 55px;
     box-sizing: border-box;
-
     :focus,
     :valid {
       border-bottom: 4px solid ${colors.mediumBlue};
