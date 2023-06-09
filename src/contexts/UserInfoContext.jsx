@@ -1,9 +1,10 @@
-import { useState, createContext } from "react";
+import { createContext } from "react";
+import useLocalStorage from "./hooks/useLocalStorage.js"
 
 export const UserInfoContext = createContext();
 
 export default function UserInfoProvider({ children }) {
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useLocalStorage('userData', {});
 
   return (
     <UserInfoContext.Provider value={{ userInfo, setUserInfo }}>

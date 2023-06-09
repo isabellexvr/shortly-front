@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { Button, Form } from "../styles";
-import Input from "../../components/Input";
-import { colors } from "../../assets/colors";
+import { Button, Form } from "../../styles";
+import Input from "../../../components/Input";
+import { colors } from "../../../assets/colors";
 import { ImAttachment } from "react-icons/im";
 import { IconContext } from "react-icons/lib";
-import useUserInfo from "../../contexts/hooks/useUserInfo";
-import useGetUserUrls from "../../services/hooks/api/useGetUserUrls";
+import useUserInfo from "../../../contexts/hooks/useUserInfo";
+import useGetUserUrls from "../../../services/hooks/api/useGetUserUrls";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 export default function HomePage() {
@@ -21,30 +21,46 @@ export default function HomePage() {
     console.log(isValidHttpUrl(url));
   }
 
-  function isValidHttpUrl(string) {
+  function isValidHttpUrl(inputString) {
     try {
-      const newUrl = new URL(`http://${string}`);
+      const newUrl = new URL(`http://${inputString}`);
       return newUrl.protocol === "http:" || newUrl.protocol === "https:";
     } catch (error) {
       return false;
     }
   }
 
-  useEffect(() => {
-    async function aa() {
-      try {
-        const urls = await getUserUrls();
-        setUserUrls(urls.urls);
-        console.log(urls);
-      } catch (error) {
-        console.log(error);
-      }
+  async function aa() {
+    try {
+      const urls = await getUserUrls();
+      setUserUrls(urls.urls);
+      console.log(urls);
+    } catch (error) {
+      console.log(error);
     }
-    aa();
-  }, []);
+  }
+
+  const userInfoStorage = localStorage.getItem("userInfo");
+  const tokenStorage = localStorage.getItem("token");
+
+  useEffect(() => {
+    if ((userInfoStorage || tokenStorage) && !userInfo) {
+      setUserInfo({
+        userInfo: JSON.parse(userInfoStorage),
+        token: JSON.parse(tokenStorage),
+      });
+    }
+
+    if (userInfo) {
+      console.log(userInfo)
+      aa()
+    }
+  }, [userInfo]);
 
   return (
     <>
+      {getUserUrlsLoading && <>carregando...</>}
+      {getUserUrlsError && <>deu ruim</>}
       <ShortenForm onSubmit={sendShorten}>
         <ShortenInput>
           <input
@@ -65,7 +81,7 @@ export default function HomePage() {
         <ShortenButton type="submit">Encurtar Link</ShortenButton>
       </ShortenForm>
       <UrlsContainer>
-        {userUrls.map((u, i) => (
+        {userUrls?.map((u, i) => (
           <UrlContainer key={i}>
             <UrlInfo>
               <a href={u.originalUrl}>{u.originalUrl}</a>

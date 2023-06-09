@@ -6,7 +6,6 @@ import useSignInUser from "../../services/hooks/api/useSignInUser.js";
 import { Form, Title, StyledLink, Button } from "../styles.js";
 import useUserInfo from "../../contexts/hooks/useUserInfo.js";
 import { useNavigate } from "react-router-dom";
-import jwtDecode from "jwt-decode";
 
 export default function SignUpPage() {
   const [form, setForm] = useState({});
@@ -37,29 +36,13 @@ export default function SignUpPage() {
       delete form.name;
       delete form.confirmPassword;
       const userInfo = await signInUser(form);
-      const decoded = jwtDecode(userInfo);
-      setUserInfo({
-        userInfo: decoded,
-        token: userInfo,
-      });
-      navigate("/home");
+      setUserInfo(userInfo);
+      navigate("/user/home");
     } catch (err) {
       console.log(err);
       alert(err.response.data);
     }
   };
-
-  useEffect(() => {
-    const userInfo = localStorage.getItem("userInfo");
-    const token = localStorage.getItem("token");
-    if (userInfo || token) {
-      setUserInfo({
-        userInfo: JSON.parse(userInfo),
-        token: JSON.parse(token),
-      });
-      navigate("/home");
-    }
-  }, []);
 
   return (
     <>

@@ -16,6 +16,7 @@ export default function Icon({
       onClick={() => {
         if (route === "logout-method") {
           localStorage.removeItem("userInfo");
+          localStorage.removeItem("token")
           setUserInfo(null);
           navigate("/ranking");
         }
