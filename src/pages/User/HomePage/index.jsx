@@ -40,18 +40,9 @@ export default function HomePage() {
     }
   }
 
-  const userInfoStorage = localStorage.getItem("userInfo");
-  const tokenStorage = localStorage.getItem("token");
-
   useEffect(() => {
-    if ((userInfoStorage || tokenStorage) && !userInfo) {
-      setUserInfo({
-        userInfo: JSON.parse(userInfoStorage),
-        token: JSON.parse(tokenStorage),
-      });
-    }
 
-    if (userInfo) {
+    if (Object.keys(userInfo).length !== 0) {
       console.log(userInfo)
       aa()
     }

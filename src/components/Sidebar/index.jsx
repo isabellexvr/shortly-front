@@ -11,10 +11,12 @@ import {
 import Icon from "./Icon";
 import useUserInfo from "../../contexts/hooks/useUserInfo";
 import UnloggedIcons from "./UnloggedIcons";
+import useToken from "../../services/hooks/useToken";
 
 export default function Sidebar() {
   const [showSidebar, setShowSidebar] = useState(null);
   const { userInfo, setUserInfo } = useUserInfo();
+  const token = useToken()
 
   return (
     <>
@@ -23,10 +25,10 @@ export default function Sidebar() {
           <div className="header" onClick={() => setShowSidebar(!showSidebar)}>
             <Logo src={logo} />
           </div>
-          <UnloggedIcons isSideBarOpened={showSidebar} isLogged={userInfo !== null} />
+          <UnloggedIcons isSideBarOpened={showSidebar} isLogged={token !== null} />
 
           <div className="logout">
-            {userInfo && (
+            {token && (
               <Icon
                 route={"logout-method"}
                 name="Logout"
@@ -43,9 +45,9 @@ export default function Sidebar() {
           <div className="header" onClick={() => setShowSidebar(!showSidebar)}>
             <LogoFull src={logoFull} />
           </div>
-          <UnloggedIcons isSideBarOpened={showSidebar} isLogged={userInfo !== null} />
+          <UnloggedIcons isSideBarOpened={showSidebar} isLogged={token !== null} />
           <div className="logout">
-            {userInfo && (
+            {token && (
               <Icon
                 route={"logout-method"}
                 name="Logout"
