@@ -1,19 +1,41 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { colors } from "../../assets/colors";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import useToken from "../../services/hooks/useToken";
+import jwt_decode from "jwt-decode";
 
 export default function Header() {
   const navigate = useNavigate();
+  const token = useToken();
+  function handleUserName(token){
+    console.log(token)
+    const userInfo = jwt_decode(token)
+    return userInfo.name
+  }
+  
   return (
-    <HeaderContainer>
-      <Button fontColor="black" backgroundColor="white">
-        Sobre
-      </Button>
-      <Button fontColor="white" backgroundColor={colors.lightBlue} onClick={() => navigate("/sign-up")}>
-        Comece aqui
-      </Button>
-    </HeaderContainer>
+    <>
+      {token && <HeaderContainer>
+        Seja bem vindo, {handleUserName(token)}
+        </HeaderContainer>}
+      {!token && (
+        <>
+          <HeaderContainer>
+            <Button fontColor="black" backgroundColor="white">
+              Sobre
+            </Button>
+            <Button
+              fontColor="white"
+              backgroundColor={colors.lightBlue}
+              onClick={() => navigate("/sign-up")}
+            >
+              Comece aqui
+            </Button>
+          </HeaderContainer>
+        </>
+      )}
+    </>
   );
 }
 
@@ -35,8 +57,8 @@ export const Button = styled.button`
   cursor: pointer;
   width: 174px;
   height: 45px;
-  background-color: ${p => p.backgroundColor};
-  color: ${p => p.fontColor};
+  background-color: ${(p) => p.backgroundColor};
+  color: ${(p) => p.fontColor};
   border-radius: 15px;
   display: flex;
   justify-content: center;
@@ -47,7 +69,7 @@ export const Button = styled.button`
   font-weight: 700;
   font-size: 18px;
   line-height: 25px;
-  :disabled{
+  :disabled {
     opacity: 0.7;
     cursor: default;
   }
