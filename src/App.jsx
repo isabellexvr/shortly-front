@@ -18,7 +18,7 @@ function App() {
           <Header />
           <Sidebar />
           <Routes>
-            <Route element={<RankingPage />} path="/" />
+            <Route element={<RankingPage />} path="/ranking" />
             <Route element={<SignUpPage />} path="/sign-up" />
             <Route element={<SignInPage />} path="/sign-in" />
             <Route

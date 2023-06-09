@@ -9,7 +9,6 @@ export default function Header() {
   const navigate = useNavigate();
   const token = useToken();
   function handleUserName(token){
-    console.log(token)
     const userInfo = jwt_decode(token)
     return userInfo.name
   }
@@ -64,7 +63,6 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   font-style: normal;
-  font-family: "DM Sans", sans-serif;
   margin-left: 10px;
   font-weight: 700;
   font-size: 18px;

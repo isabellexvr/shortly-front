@@ -15,8 +15,9 @@ export default function Icon({
       className="icon"
       onClick={() => {
         if (route === "logout-method") {
-          localStorage.removeItem("userInfo");
-          navigate("/");
+          localStorage.removeItem("userData");
+          setUserInfo({})
+          navigate("/sign-in");
         }
         navigate(handleRoute(`${name}`));
       }}
@@ -61,12 +62,12 @@ const IconStyle = styled.div`
 const handleRoute = (icon) => {
   switch (icon) {
     case "Ranking":
-      return "/";
+      return "/ranking";
     case "Login":
       return "/sign-in";
     case "Cadastro":
       return "/sign-up";
     case "Home":
-      return "/home";
+      return "/user/home";
   }
 };
