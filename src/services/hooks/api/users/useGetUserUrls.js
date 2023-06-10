@@ -1,10 +1,10 @@
-import useAsync from "../useAsync";
-import useToken from "../useToken.js"
-import { usersApi } from "../../api/usersApi";
+import useAsync from "../../useAsync";
+import useToken from "../../useToken.js";
+import { usersApi } from "../../../api/usersApi";
 
 export default function useGetUserUrls() {
   const token = useToken();
-  
+
   const {
     data: getUserUrlsData,
     loading: getUserUrlsLoading,

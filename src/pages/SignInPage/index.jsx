@@ -2,7 +2,7 @@ import Input from "../../components/Input";
 import { FaUserCheck } from "react-icons/fa";
 import { Form, Title, StyledLink, Button } from "../styles.js";
 import { useEffect, useState } from "react";
-import useSignInUser from "../../services/hooks/api/useSignInUser";
+import useSignInUser from "../../services/hooks/api/users/useSignInUser";
 import useUserInfo from "../../contexts/hooks/useUserInfo";
 import { useNavigate } from "react-router-dom";
 

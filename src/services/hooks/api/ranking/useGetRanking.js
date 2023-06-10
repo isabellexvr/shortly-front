@@ -1,5 +1,5 @@
-import useAsync from "../useAsync.js";
-import rankingApi from "../../api/rankingApi/index.js";
+import useAsync from "../../useAsync.js";
+import rankingApi from "../../../api/rankingApi/index.js";
 
 export default function useGetRanking() {
   const {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ImAttachment } from "react-icons/im";
 import useUserInfo from "../../../contexts/hooks/useUserInfo";
-import useGetUserUrls from "../../../services/hooks/api/useGetUserUrls";
+import useGetUserUrls from "../../../services/hooks/api/users/useGetUserUrls";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { isValidUrl } from "./helpers";
 import {
@@ -18,17 +18,18 @@ import {
   CleanButton,
 } from "./styles";
 import toast, { Toaster } from "react-hot-toast";
-import usePostUrl from "../../../services/hooks/api/usePostUrl";
-
-
+import usePostUrl from "../../../services/hooks/api/urls/usePostUrl";
+import useDeleteUrl from "../../../services/hooks/api/urls/useDeleteUrl";
 
 export default function HomePage() {
   const [url, setUrl] = useState("");
   const [userUrls, setUserUrls] = useState([]);
   const { userInfo, setUserInfo } = useUserInfo();
+
   const { getUserUrls, getUserUrlsLoading, getUserUrlsError } =
     useGetUserUrls();
-  const { postUrl } = usePostUrl();
+  const { postUrl, postUrlLoading } = usePostUrl();
+  const { deleteUrl, deleteUrlLoading } = useDeleteUrl();
 
   async function sendShorten(e) {
     e.preventDefault();
@@ -39,11 +40,17 @@ export default function HomePage() {
       return;
     }
     try {
-      toast.loading("Encurtando...")
       await postUrl({ originalUrl: url });
-      toast.success("Encurtado com sucesso!")
     } catch (error) {
-      toast.error("Algum erro foi encontrado")
+      console.log(error);
+    }
+  }
+
+  async function handleDeleteUrl(urlId) {
+    console.log(urlId);
+    try {
+      await deleteUrl(urlId);
+    } catch (error) {
       console.log(error);
     }
   }
@@ -62,7 +69,7 @@ export default function HomePage() {
     if (Object.keys(userInfo).length !== 0) {
       getUrlsOrFail();
     }
-  }, [userInfo]);
+  }, [userInfo, postUrlLoading, deleteUrlLoading]);
 
   return (
     <>
@@ -102,7 +109,11 @@ export default function HomePage() {
           {userUrls?.map((u, i) => (
             <UrlContainer key={i}>
               <UrlInfo>
-                <a href={u.originalUrl}>{u.originalUrl}</a>
+                <a href={u.originalUrl}>
+                  {u.originalUrl.length > 28
+                    ? u.originalUrl.slice(0, 25) + "..."
+                    : u.originalUrl}
+                </a>
                 <a
                   target="_SEJ"
                   href={`${import.meta.env.VITE_API_BASE_URL}urls/open/${
@@ -116,7 +127,7 @@ export default function HomePage() {
                 </a>
                 <h1>{u.visitsCounter} Visitas</h1>
               </UrlInfo>
-              <DeleteButton>
+              <DeleteButton onClick={() => handleDeleteUrl(u.id)}>
                 <RiDeleteBin6Line />
               </DeleteButton>
             </UrlContainer>

@@ -1,4 +1,4 @@
-import useGetRanking from "../../services/hooks/api/useGetRanking";
+import useGetRanking from "../../services/hooks/api/ranking/useGetRanking";
 import { useEffect, useState } from "react";
 import { RiTrophyFill } from "react-icons/ri";
 import handlePodiumIcon from "../helpers/handlePodiumIcon.js";

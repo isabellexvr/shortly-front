@@ -1,8 +1,8 @@
 import { FaUserPlus } from "react-icons/fa";
 import Input from "../../components/Input/index.jsx";
-import { useState, useEffect } from "react";
-import usePostUser from "../../services/hooks/api/usePostUser.js";
-import useSignInUser from "../../services/hooks/api/useSignInUser.js";
+import { useState } from "react";
+import usePostUser from "../../services/hooks/api/users/usePostUser.js";
+import useSignInUser from "../../services/hooks/api/users/useSignInUser.js";
 import { Form, Title, StyledLink, Button } from "../styles.js";
 import useUserInfo from "../../contexts/hooks/useUserInfo.js";
 import { useNavigate } from "react-router-dom";

@@ -73,6 +73,7 @@ export const UrlsContainer = styled.div`
   box-sizing: border-box;
   ::-webkit-scrollbar {
     width: 3px;
+    height: 80px;
   }
   ::-webkit-scrollbar-thumb {
     background: ${colors.mediumBlue};
