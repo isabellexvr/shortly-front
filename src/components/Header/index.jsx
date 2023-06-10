@@ -16,7 +16,10 @@ export default function Header() {
   return (
     <>
       {token && <HeaderContainer>
-        Seja bem vindo, {handleUserName(token)}
+        <Presentation>
+          Seja bem vindo(a), <strong>{handleUserName(token)}</strong>
+        </Presentation>
+        
         </HeaderContainer>}
       {!token && (
         <>
@@ -50,6 +53,17 @@ const HeaderContainer = styled.div`
   padding: 15px;
   box-sizing: border-box;
 `;
+
+const Presentation = styled.h1`
+  font-size: 20px;
+  font-weight: 700;
+  color: ${colors.darkBlue};
+  margin-right: 20px;
+  >strong{
+    color: ${colors.lightBlue};
+  }
+`
+
 
 export const Button = styled.button`
   all: unset;

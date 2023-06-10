@@ -33,8 +33,6 @@ export default function HomePage() {
 
   async function sendShorten(e) {
     e.preventDefault();
-    console.log(isValidUrl(url));
-    console.log();
     if (!isValidUrl(url)) {
       toast.error("Link inválido");
       return;
@@ -47,7 +45,6 @@ export default function HomePage() {
   }
 
   async function handleDeleteUrl(urlId) {
-    console.log(urlId);
     try {
       await deleteUrl(urlId);
     } catch (error) {
@@ -59,7 +56,6 @@ export default function HomePage() {
     try {
       const urls = await getUserUrls();
       setUserUrls(urls.urls);
-      console.log(urls);
     } catch (error) {
       console.log(error);
     }

@@ -13,55 +13,30 @@ import {
   RankingLeft,
   RankingTitle,
 } from "./styles";
-import useUserInfo from "../../contexts/hooks/useUserInfo";
+import styled from "styled-components";
+import useToken from "../../services/hooks/useToken";
+import jwt_decode from "jwt-decode";
 
-const MOCKEDPODIUM = [
-  {
-    id: 3,
-    name: "Fulano Cicrano",
-    linksCount: "108",
-    visitCount: "1.7Mi",
-  },
-  {
-    id: 33,
-    name: "Aninha",
-    linksCount: "421",
-    visitCount: "1.3Mi",
-  },
-  {
-    id: 63,
-    name: "ScaredDude",
-    linksCount: "349",
-    visitCount: "900k",
-  },
-];
-
-const MOCKEDLEFT = [
-  {
-    id: 50,
-    name: "O Outro",
-    linksCount: "5",
-    visitCount: "850k",
-  },
-  {
-    id: 8,
-    name: "Delicinha",
-    linksCount: "51",
-    visitCount: "821k",
-  },
-];
 export default function RankingPage() {
   const { getRanking, getRankingLoading, getRankingError } = useGetRanking();
-  const [ranking, setRanking] = useState([]);
   const [podium, setPodium] = useState([]);
   const [topTwoLeft, setTopTwoLeft] = useState([]);
-  const { userInfo, setUserInfo } = useUserInfo();
-  
+  const token = useToken();
+
+  const getUserId = (token) => {
+    const decoded = jwt_decode(token);
+    console.log(decoded)
+    return decoded.sub;
+  };
+
   useEffect(() => {
     async function getApiData() {
       try {
         const ranking = await getRanking();
-        console.log(ranking);
+        const rankingPodium = ranking.slice(0, 3);
+        const rankingTwoLeft = ranking.slice(-2);
+        setPodium(rankingPodium);
+        setTopTwoLeft(rankingTwoLeft);
       } catch (err) {
         console.log(err);
       }
@@ -89,22 +64,31 @@ export default function RankingPage() {
               </div>
             </RankingHeader>
             <PodiumContainer>
-              {MOCKEDPODIUM.map((p, i) => (
+              {podium?.map((p, i) => (
                 <Podium key={i}>
                   <div className="header">
                     <img src={handlePodiumIcon(i)} />
-                    <h1>{p.name}</h1>
+                    <h1>{p.name.length > 10 ? p.name.slice(0,8) + "..." : p.name}</h1>
+                    {token ? (
+                      getUserId(token) == p.id ? (
+                        <Congrats>É você!!!</Congrats>
+                      ) : (
+                        ""
+                      )
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <h2>{p.linksCount} URLs</h2>
                   <ViewsCount>
                     <HiCursorClick />
-                    {p.visitCount} Cliques
+                    {p.visitsCount} Cliques
                   </ViewsCount>
                 </Podium>
               ))}
             </PodiumContainer>
             <TwoLeftContainer>
-              {MOCKEDLEFT.map((l, i) => (
+              {topTwoLeft?.map((l, i) => (
                 <RankingLeft place={i} key={i}>
                   <div className="place">
                     <h1>{i == 0 ? "4th" : "5th"}</h1>
@@ -113,7 +97,7 @@ export default function RankingPage() {
                   <h3>{l.linksCount} URLs</h3>
                   <ViewsCount className="views">
                     <HiCursorClick />
-                    {l.visitCount} Views
+                    {l.visitsCount} Views
                   </ViewsCount>
                 </RankingLeft>
               ))}
@@ -124,3 +108,12 @@ export default function RankingPage() {
     </>
   );
 }
+
+const Congrats = styled.div`
+  position: absolute;
+  top: -8px;
+  font-size: 12px;
+  color: yellow;
+  right: 22px;
+
+`;

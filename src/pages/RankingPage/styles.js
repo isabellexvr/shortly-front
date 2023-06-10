@@ -67,6 +67,7 @@ export const Podium = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+
   .header {
     font-size: 1.25rem;
     display: flex;
@@ -75,6 +76,7 @@ export const Podium = styled.div`
     font-weight: 700;
     text-align: center;
     width: 100%;
+      position: relative;
     > img {
       width: 2.3em;
     }
@@ -136,6 +138,8 @@ export const RankingLeft = styled.div`
     padding: 5px;
     border-radius: 7px;
     margin-right: 10px;
+    color: white;
+    font-weight: 700;
   }
   .views {
     font-size: 13px;

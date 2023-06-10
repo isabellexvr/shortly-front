@@ -17,7 +17,6 @@ export default function Sidebar() {
   const [showSidebar, setShowSidebar] = useState(null);
   const { userInfo, setUserInfo } = useUserInfo();
   const token = useToken()
-  console.log(userInfo)
 
   return (
     <>
