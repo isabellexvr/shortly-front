@@ -15,8 +15,10 @@ import {
   ShortenInput,
   ShortenForm,
   SectionContainer,
-  CleanButton
+  CleanButton,
 } from "./styles";
+import toast, { Toaster } from "react-hot-toast";
+import usePostUrl from "../../../services/hooks/api/usePostUrl";
 
 export default function HomePage() {
   const [url, setUrl] = useState("");
@@ -24,11 +26,21 @@ export default function HomePage() {
   const { userInfo, setUserInfo } = useUserInfo();
   const { getUserUrls, getUserUrlsLoading, getUserUrlsError } =
     useGetUserUrls();
+  const { postUrl } = usePostUrl();
 
-  function sendShorten(e) {
+  async function sendShorten(e) {
     e.preventDefault();
     console.log(isValidUrl(url));
     console.log();
+    if (!isValidUrl(url)) {
+      toast("Link inválido");
+      return;
+    }
+    try {
+      await postUrl({originalUrl: url});
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   async function getUrlsOrFail() {
@@ -49,6 +61,7 @@ export default function HomePage() {
 
   return (
     <>
+      <Toaster />
       <SectionContainer>
         <Title>Encurtar URLs</Title>
         {getUserUrlsLoading && <>carregando...</>}
@@ -56,10 +69,8 @@ export default function HomePage() {
         <ShortenForm onSubmit={sendShorten}>
           <ShortenInput>
             <input
-              required
               name="url"
               id="url"
-              type="url"
               onChange={(e) =>
                 setUrl(
                   url.length === 0 ? "http://" + e.target.value : e.target.value
@@ -76,7 +87,7 @@ export default function HomePage() {
               <ImAttachment />
             </IconLabel>
           </ShortenInput>
-          <CleanButton onClick={() => setUrl("")} >Limpar</CleanButton>
+          <CleanButton onClick={() => setUrl("")}>Limpar</CleanButton>
           <ShortenButton type="submit">Encurtar</ShortenButton>
         </ShortenForm>
         <UrlsContainer>
