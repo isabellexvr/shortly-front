@@ -1,12 +1,10 @@
-export function isValidHttpUrl(inputString) {
-  try {
-    const newUrl = new URL(`http://${inputString}`);
-    return newUrl.protocol === "http:" || newUrl.protocol === "https:";
-  } catch (error) {
-    return false;
-  }
+export const isValidUrl = urlString=> {
+  let url;
+  try { 
+        url =new URL(urlString); 
+    }
+    catch(e){ 
+      return false; 
+    }
+    return url.protocol === "http:" || url.protocol === "https:";
 }
-
-const handleurl = (url) => {
-    
-};

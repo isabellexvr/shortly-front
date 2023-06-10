@@ -5,7 +5,7 @@ export const Title = styled.h1`
   font-size: 22px;
   font-weight: 700;
   color: ${colors.darkBlue};
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 
 `
 
@@ -15,6 +15,29 @@ export const ShortenButton = styled.button`
   width: 174px;
   height: 55px;
   background-color: ${colors.darkBlue};
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
+  font-family: "DM Sans", sans-serif;
+  margin-left: 10px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  :disabled {
+    opacity: 0.7;
+    cursor: default;
+  }
+`;
+
+export const CleanButton = styled.button`
+  all: unset;
+  cursor: pointer;
+  width: 174px;
+  height: 55px;
+  background-color: ${colors.lightBlue};
   color: white;
   border-radius: 12px;
   display: flex;

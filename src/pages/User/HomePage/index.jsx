@@ -3,7 +3,7 @@ import { ImAttachment } from "react-icons/im";
 import useUserInfo from "../../../contexts/hooks/useUserInfo";
 import useGetUserUrls from "../../../services/hooks/api/useGetUserUrls";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { isValidHttpUrl } from "./helpers";
+import { isValidUrl } from "./helpers";
 import {
   Title,
   ShortenButton,
@@ -15,6 +15,7 @@ import {
   ShortenInput,
   ShortenForm,
   SectionContainer,
+  CleanButton
 } from "./styles";
 
 export default function HomePage() {
@@ -26,7 +27,8 @@ export default function HomePage() {
 
   function sendShorten(e) {
     e.preventDefault();
-    console.log(isValidHttpUrl(url));
+    console.log(isValidUrl(url));
+    console.log();
   }
 
   async function getUrlsOrFail() {
@@ -48,7 +50,7 @@ export default function HomePage() {
   return (
     <>
       <SectionContainer>
-        <Title>Encurtador de URLs</Title>
+        <Title>Encurtar URLs</Title>
         {getUserUrlsLoading && <>carregando...</>}
         {getUserUrlsError && <>deu ruim</>}
         <ShortenForm onSubmit={sendShorten}>
@@ -57,7 +59,13 @@ export default function HomePage() {
               required
               name="url"
               id="url"
-              onChange={(e) => setUrl(e.target.value)}
+              type="url"
+              onChange={(e) =>
+                setUrl(
+                  url.length === 0 ? "http://" + e.target.value : e.target.value
+                )
+              }
+              value={url}
             />
 
             <label className="title" htmlFor="url">
@@ -68,7 +76,8 @@ export default function HomePage() {
               <ImAttachment />
             </IconLabel>
           </ShortenInput>
-          <ShortenButton type="submit">Encurtar Link</ShortenButton>
+          <CleanButton onClick={() => setUrl("")} >Limpar</CleanButton>
+          <ShortenButton type="submit">Encurtar</ShortenButton>
         </ShortenForm>
         <UrlsContainer>
           {userUrls?.map((u, i) => (
@@ -76,7 +85,11 @@ export default function HomePage() {
               <UrlInfo>
                 <a href={u.originalUrl}>{u.originalUrl}</a>
                 <a
-                  href={`${import.meta.env.VITE_API_BASE_URL}${u.shortenedUrl}`}
+                  target="_SEJ"
+                  href={`${import.meta.env.VITE_API_BASE_URL}urls/open/${
+                    u.shortenedUrl
+                  }`}
+                  rel="noreferrer"
                 >
                   {" "}
                   {import.meta.env.VITE_API_BASE_URL}
