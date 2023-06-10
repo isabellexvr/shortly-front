@@ -20,11 +20,16 @@ import {
 import toast, { Toaster } from "react-hot-toast";
 import usePostUrl from "../../../services/hooks/api/urls/usePostUrl";
 import useDeleteUrl from "../../../services/hooks/api/urls/useDeleteUrl";
+import jwt_decode from "jwt-decode";
+import useToken from "../../../services/hooks/useToken";
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
   const [url, setUrl] = useState("");
   const [userUrls, setUserUrls] = useState([]);
   const { userInfo, setUserInfo } = useUserInfo();
+  const token = useToken();
+  const navigate = useNavigate();
 
   const { getUserUrls, getUserUrlsLoading, getUserUrlsError } =
     useGetUserUrls();
@@ -53,6 +58,13 @@ export default function HomePage() {
   }
 
   async function getUrlsOrFail() {
+    const decoded = jwt_decode(token);
+    const expiration = new Date(decoded.exp * 1000);
+    if (new Date() > expiration) {
+      setUserInfo({});
+      navigate("/sign-in");
+      return;
+    }
     try {
       const urls = await getUserUrls();
       setUserUrls(urls.urls);

@@ -16,16 +16,25 @@ import {
 import styled from "styled-components";
 import useToken from "../../services/hooks/useToken";
 import jwt_decode from "jwt-decode";
+import useUserInfo from "../../contexts/hooks/useUserInfo";
+import { useNavigate } from "react-router-dom";
 
 export default function RankingPage() {
   const { getRanking, getRankingLoading, getRankingError } = useGetRanking();
   const [podium, setPodium] = useState([]);
   const [topTwoLeft, setTopTwoLeft] = useState([]);
   const token = useToken();
+  const {setUserInfo} = useUserInfo()
+  const navigate = useNavigate()
 
   const getUserId = (token) => {
     const decoded = jwt_decode(token);
-    console.log(decoded)
+    const expiration = new Date(decoded.exp * 1000);
+    if (new Date() > expiration) {
+      setUserInfo({});
+      navigate("/sign-in");
+      return;
+    }
     return decoded.sub;
   };
 

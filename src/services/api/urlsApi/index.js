@@ -9,10 +9,13 @@ const urlsApi = {
     return res.data;
   },
   deleteUrl: async (params, token) => {
-    const res = await api.delete(`${urlsEndpoints.delete}${params}`, {
-      headers: { Authorization: "Bearer " + token },
-    });
-    return res.data;
+    if (params) {
+      const url = `${urlsEndpoints.delete}${params}`;
+      const res = await api.delete(url, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      return res.data;
+    }
   },
 };
 
