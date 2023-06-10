@@ -6,8 +6,7 @@ export const Title = styled.h1`
   font-weight: 700;
   color: ${colors.darkBlue};
   margin-bottom: 30px;
-
-`
+`;
 
 export const ShortenButton = styled.button`
   all: unset;
@@ -60,16 +59,27 @@ export const IconLabel = styled.label`
   left: 13px;
   bottom: 18px;
   color: ${colors.lightBlue};
-
 `;
 
 export const UrlsContainer = styled.div`
   margin-top: 20px;
-  width: 58.05vw;
-  height: 50px;
+  width: 75vw;
+  height: 80%;
   display: flex;
   flex-direction: column;
   color: white;
+  padding-right: 3px;
+  overflow: scroll;
+  box-sizing: border-box;
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: ${colors.mediumBlue};
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: ${colors.darkBlue};
+  }
 `;
 
 export const UrlInfo = styled.div`
@@ -91,12 +101,13 @@ export const UrlInfo = styled.div`
     font-weight: 700;
     color: ${colors.lightBlue};
   }
-  >a,h1{
+  > a,
+  h1 {
     width: 33%;
     display: flex;
     justify-content: center;
   }
-  >h1{
+  > h1 {
     font-weight: 500;
   }
 `;
@@ -123,7 +134,7 @@ export const UrlContainer = styled.div`
 export const ShortenForm = styled.form`
   display: flex;
   height: fit-content;
-  width: 58.05vw;
+  width: 75vw;
   justify-content: space-between;
 `;
 
@@ -173,5 +184,5 @@ export const ShortenInput = styled.div`
 `;
 
 export const SectionContainer = styled.section`
-
-`
+  height: 50%;
+`;

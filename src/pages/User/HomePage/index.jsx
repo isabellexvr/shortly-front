@@ -20,6 +20,8 @@ import {
 import toast, { Toaster } from "react-hot-toast";
 import usePostUrl from "../../../services/hooks/api/usePostUrl";
 
+
+
 export default function HomePage() {
   const [url, setUrl] = useState("");
   const [userUrls, setUserUrls] = useState([]);
@@ -33,13 +35,16 @@ export default function HomePage() {
     console.log(isValidUrl(url));
     console.log();
     if (!isValidUrl(url)) {
-      toast("Link inválido");
+      toast.error("Link inválido");
       return;
     }
     try {
-      await postUrl({originalUrl: url});
+      toast.loading("Encurtando...")
+      await postUrl({ originalUrl: url });
+      toast.success("Encurtado com sucesso!")
     } catch (error) {
-      console.log(error)
+      toast.error("Algum erro foi encontrado")
+      console.log(error);
     }
   }
 
@@ -69,6 +74,7 @@ export default function HomePage() {
         <ShortenForm onSubmit={sendShorten}>
           <ShortenInput>
             <input
+              required
               name="url"
               id="url"
               onChange={(e) =>
@@ -87,7 +93,9 @@ export default function HomePage() {
               <ImAttachment />
             </IconLabel>
           </ShortenInput>
-          <CleanButton onClick={() => setUrl("")}>Limpar</CleanButton>
+          <CleanButton type="reset" onClick={() => setUrl("")}>
+            Limpar
+          </CleanButton>
           <ShortenButton type="submit">Encurtar</ShortenButton>
         </ShortenForm>
         <UrlsContainer>

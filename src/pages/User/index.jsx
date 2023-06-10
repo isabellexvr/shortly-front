@@ -10,5 +10,7 @@ export default function UserRoutes(){
 }
 
 const Container = styled.div`
-    
+    height: 100vh;
+    width: 72%;
+    margin-top: 60px;
 `
