@@ -69,7 +69,7 @@ export const Podium = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 
   .header {
     font-size: 1.25rem;
@@ -100,7 +100,7 @@ export const Podium = styled.div`
 
 export const ViewsCount = styled.div`
   background-color: ${colors.lightGrey};
-  width: 130px;
+  width: ${p => p.width};
   height: 30px;
   border-radius: 10px;
   padding: 5px;

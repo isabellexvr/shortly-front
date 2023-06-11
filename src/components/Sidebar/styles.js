@@ -42,10 +42,23 @@ export const LogoFull = styled.img`
 `;
 
 export const ExpandSidebar = keyframes`
-from {width: 50px}
-    to {
-        width: 180px;
-    };
+  from {
+    
+    width: 50px
+  }
+  to {
+        width: 12vw;
+  };
+`;
+
+const ExpandMobileSidebar = keyframes`
+    from {
+    
+    width: 1px
+  }
+  to {
+        width: 160px;
+  };
 `;
 
 export const RetractSidebar = keyframes`
@@ -62,7 +75,7 @@ z-index 1;
   left: 0;
   top: 0;
   animation: ${(p) =>
-    p.showSideBar !== null ? RetractSidebar : "none"} 0.5s linear;
+    p.showSideBar !== null ? RetractSidebar : "none"} 0.3s linear;
   color: white;
   display: flex;
   flex-direction: column;
@@ -77,7 +90,8 @@ z-index 1;
     align-items: center;
   }
   .icon{
-    animation: ${ p=> p.isSideBarOpened !== null ? DecreaseBackground: "none"} 0.5s;
+    animation: ${(p) =>
+      p.isSideBarOpened !== null ? DecreaseBackground : "none"} 0.5s;
   }
   .logout{
     margin-bottom: 20px;
@@ -95,15 +109,21 @@ export const Icons = styled.div`
 `;
 
 export const ExpandedSidebar = styled.div`
+  @media(max-width: 1200px) {
+    animation: ${(p) =>
+      p.showSideBar !== null ? ExpandMobileSidebar : "none"} 0.3s linear;
+    width: 160px
+  }
 z-index 1;
   height: 100vh;
-  width: 180px;
+  width: 12vw;
   background-color: ${colors.darkBlue};
   position: fixed;
   left: 0;
   top: 0;
+
   animation: ${(p) =>
-    p.showSideBar !== null ? ExpandSidebar : "none"} 0.5s linear;
+    p.showSideBar !== null ? ExpandSidebar : "none"} 0.3s linear;
   color: white;
   display: flex;
   flex-direction: column;
@@ -130,4 +150,30 @@ z-index 1;
     font-size: 30px;
   }
 
+`;
+
+const DarkenScreen = keyframes`
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 0.7;
+  }
+`;
+
+export const LeftScreen = styled.div`
+  @media (max-width: 1200px) {
+    width: calc(100vw - 160px);
+  }
+  animation: ${DarkenScreen} 0.15s ease-in-out;
+  position: fixed;
+  cursor: pointer;
+  background-color: black;
+  opacity: 0.7;
+  width: 88vw;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  display: ${(p) => (p.isOpened ? "none" : "initial")};
 `;

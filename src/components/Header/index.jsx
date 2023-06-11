@@ -42,6 +42,9 @@ export default function Header() {
 }
 
 const HeaderContainer = styled.div`
+@media(max-width: 1200px) {
+    background-color: ${colors.darkBlue};
+}
   height: 70px;
   width: 100%;
   position: absolute;
@@ -51,7 +54,9 @@ const HeaderContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding: 15px;
+  padding-right: 10px;
   box-sizing: border-box;
+
 `;
 
 const Presentation = styled.h1`
@@ -68,7 +73,7 @@ const Presentation = styled.h1`
 export const Button = styled.button`
   all: unset;
   cursor: pointer;
-  width: 174px;
+  width: clamp(115px, 12vw, 160px);
   height: 45px;
   background-color: ${(p) => p.backgroundColor};
   color: ${(p) => p.fontColor};
@@ -79,7 +84,7 @@ export const Button = styled.button`
   font-style: normal;
   margin-left: 10px;
   font-weight: 700;
-  font-size: 18px;
+  font-size: clamp(12px, 4vw, 18px);
   line-height: 25px;
   :disabled {
     opacity: 0.7;

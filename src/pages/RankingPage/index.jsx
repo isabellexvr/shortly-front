@@ -111,7 +111,7 @@ export default function RankingPage() {
                       )}
                     </div>
                     <h2>{p.linksCount} URLs</h2>
-                    <ViewsCount>
+                    <ViewsCount width={"90%"}>
                       <HiCursorClick />
                       {p.visitsCount} Cliques
                     </ViewsCount>
@@ -127,10 +127,10 @@ export default function RankingPage() {
                     </div>
                     <h2>{l.name}</h2>
                     <h3>{l.linksCount} URLs</h3>
-                    <ViewsCount className="views">
+                    <ViewsCount width={"130px"} className="views">
                       <HiCursorClick />
                       {l.visitsCount} Views
-                    </ViewsCount>
+                    </ViewsCount >
                   </RankingLeft>
                 ))}
             </TwoLeftContainer>
