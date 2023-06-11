@@ -25,7 +25,7 @@ export const RankingTitle = styled.div`
   font-family: "DM Sans", sans-serif;
   padding: 5px;
   > h1 {
-    font-size: 55px;
+    font-size: clamp(20px, 10vw, 55px);
     margin-right: 10px;
     margin-bottom: 10px;
     font-weight: 700;
@@ -33,7 +33,7 @@ export const RankingTitle = styled.div`
     -webkit-text-stroke: 1.5px ${colors.darkBlue};
   }
   > svg {
-    font-size: 50px;
+    font-size: clamp(20px, 10vw, 50px);
     color: yellow;
   }
 `;
@@ -46,7 +46,8 @@ export const RankingHeader = styled.div`
   margin-bottom: 35px;
   > .subtitle {
     h2 {
-      font-size: 20px;
+      font-size: clamp(12px, 1.3vw, 20px);
+      text-align: center;
       font-weight: 700;
       color: ${colors.darkBlue};
     }
@@ -54,6 +55,9 @@ export const RankingHeader = styled.div`
 `;
 
 export const PodiumContainer = styled.div`
+@media(max-width: 1200px) {
+  flex-direction: column;
+}
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -61,6 +65,10 @@ export const PodiumContainer = styled.div`
 `;
 
 export const Podium = styled.div`
+@media (max-width: 1200px) {
+  width: 150px;
+  margin-bottom: 15px;
+}
   width: 28%;
   padding: 1.25em;
   box-sizing: border-box;
@@ -70,9 +78,8 @@ export const Podium = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   .header {
-    font-size: 1.25rem;
+    font-size: 1.12rem;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -81,12 +88,12 @@ export const Podium = styled.div`
     width: 100%;
       position: relative;
     > img {
-      width: 2.3em;
+      width: 2.2em;
     }
   }
   > h2 {
     color: ${colors.lightGrey};
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
     width: 100%;
     display: flex;
@@ -127,6 +134,9 @@ export const TwoLeftContainer = styled.div`
 `;
 
 export const RankingLeft = styled.div`
+@media(max-width: 1200px){
+  display: none;
+}
   display: flex;
   align-items: center;
   width: 100%;
@@ -137,6 +147,7 @@ export const RankingLeft = styled.div`
   padding: 9px;
   font-weight: 500;
   .place {
+
     background-color: ${(p) => (p.place == 0 ? "orange" : "red")};
     padding: 5px;
     border-radius: 7px;
@@ -145,13 +156,16 @@ export const RankingLeft = styled.div`
     font-weight: 700;
   }
   .views {
+
     font-size: 13px;
     margin: initial;
   }
   > h2 {
+
     font-weight: 700;
   }
   > h3 {
+
     color: ${colors.lightGrey};
     font-size: 13px;
     font-weight: 700;

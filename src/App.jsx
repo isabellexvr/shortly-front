@@ -51,6 +51,12 @@ function AuthorizedRoute({ children }) {
 }
 
 const AppStyle = styled.div`
+  @media (max-width: 1200px) {
+    margin-top: 70px;
+    padding-left: 40px;
+  }
+  padding-left: 20px;
+  box-sizing: border-box;
   width: 100vw;
   height: 100vh;
   display: flex;

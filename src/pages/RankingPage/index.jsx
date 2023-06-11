@@ -39,7 +39,6 @@ export default function RankingPage() {
     return decoded.sub;
   };
 
-  console.log("erro aqui ó: ", getRankingError);
 
   useEffect(() => {
     async function getApiData() {
