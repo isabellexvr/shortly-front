@@ -54,7 +54,6 @@ const HeaderContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding: 15px;
-  padding-right: 10px;
   box-sizing: border-box;
 
 `;
@@ -86,6 +85,7 @@ export const Button = styled.button`
   font-weight: 700;
   font-size: clamp(12px, 4vw, 18px);
   line-height: 25px;
+  text-align: center;
   :disabled {
     opacity: 0.7;
     cursor: default;

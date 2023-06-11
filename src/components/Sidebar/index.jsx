@@ -15,7 +15,7 @@ import useToken from "../../services/hooks/useToken";
 import { useState } from "react";
 
 export default function Sidebar() {
-  const [showSidebar, setShowSidebar] = useState(null);
+  const [showSidebar, setShowSidebar] = useState(false);
   const { userInfo, setUserInfo } = useUserInfo();
   const token = useToken();
 
@@ -47,12 +47,12 @@ export default function Sidebar() {
               )}
             </div>
           </CompressedSidebar>
-          <LeftScreen isOpened={showSidebar !== null} onClick={() => setShowSidebar(!showSidebar)} />
+          <LeftScreen isOpened={showSidebar} onClick={() => setShowSidebar(!showSidebar)} />
         </>
       )}
       {showSidebar && (
         <>
-          <ExpandedSidebar>
+          <ExpandedSidebar showSideBar={showSidebar} >
             <div
               className="header"
               onClick={() => setShowSidebar(!showSidebar)}
@@ -74,7 +74,7 @@ export default function Sidebar() {
               )}
             </div>
           </ExpandedSidebar>
-          <LeftScreen onClick={() => setShowSidebar(!showSidebar)} />
+          <LeftScreen isOpened={showSidebar}  onClick={() => setShowSidebar(!showSidebar)} />
         </>
       )}
     </>

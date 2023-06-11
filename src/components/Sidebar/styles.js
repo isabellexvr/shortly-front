@@ -75,7 +75,7 @@ z-index 1;
   left: 0;
   top: 0;
   animation: ${(p) =>
-    p.showSideBar !== null ? RetractSidebar : "none"} 0.3s linear;
+    !p.showSideBar ? RetractSidebar : "none"} 0.3s linear;
   color: white;
   display: flex;
   flex-direction: column;
@@ -91,7 +91,7 @@ z-index 1;
   }
   .icon{
     animation: ${(p) =>
-      p.isSideBarOpened !== null ? DecreaseBackground : "none"} 0.5s;
+      p.isSideBarOpened ? DecreaseBackground : "none"} 0.5s;
   }
   .logout{
     margin-bottom: 20px;
@@ -111,7 +111,7 @@ export const Icons = styled.div`
 export const ExpandedSidebar = styled.div`
   @media(max-width: 1200px) {
     animation: ${(p) =>
-      p.showSideBar !== null ? ExpandMobileSidebar : "none"} 0.3s linear;
+      p.showSideBar ? ExpandMobileSidebar : "none"} 0.3s linear;
     width: 160px
   }
 z-index 1;
@@ -123,7 +123,7 @@ z-index 1;
   top: 0;
 
   animation: ${(p) =>
-    p.showSideBar !== null ? ExpandSidebar : "none"} 0.3s linear;
+    p.showSideBar ? ExpandSidebar : "none"} 0.3s linear;
   color: white;
   display: flex;
   flex-direction: column;
@@ -161,11 +161,23 @@ const DarkenScreen = keyframes`
   }
 `;
 
+const BrithenScreen = keyframes`
+  from{
+    display: initial;
+    opacity: 0.7;
+
+  }
+  to{
+    opacity: 0;
+    display: none;
+  }
+`
+
 export const LeftScreen = styled.div`
   @media (max-width: 1200px) {
     width: calc(100vw - 160px);
   }
-  animation: ${DarkenScreen} 0.15s ease-in-out;
+  animation: ${p => p.isOpened ? DarkenScreen : BrithenScreen} 0.5s ease-in-out;
   position: fixed;
   cursor: pointer;
   background-color: black;
@@ -175,5 +187,9 @@ export const LeftScreen = styled.div`
   right: 0;
   top: 0;
   z-index: 2;
-  display: ${(p) => (p.isOpened ? "none" : "initial")};
+  display: ${(p) => (p.isOpened ? "" : "none")};
+  transition-property: display;
+  transition-duration: 1s;
+  transition-delay: 2s;
+  
 `;
