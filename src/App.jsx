@@ -52,7 +52,6 @@ function AuthorizedRoute({ children }) {
 
 const AppStyle = styled.div`
   @media (max-width: 1200px) {
-    margin-top: 70px;
     padding-left: 40px;
   }
   padding-left: 20px;

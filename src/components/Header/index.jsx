@@ -42,7 +42,7 @@ export default function Header() {
 }
 
 const HeaderContainer = styled.div`
-@media(max-width: 1200px) {
+@media(max-width: 500px) {
     background-color: ${colors.darkBlue};
 }
   height: 70px;
@@ -72,7 +72,7 @@ const Presentation = styled.h1`
 export const Button = styled.button`
   all: unset;
   cursor: pointer;
-  width: clamp(115px, 12vw, 160px);
+  width: clamp(100px, 24vw, 160px);
   height: 45px;
   background-color: ${(p) => p.backgroundColor};
   color: ${(p) => p.fontColor};
@@ -83,7 +83,7 @@ export const Button = styled.button`
   font-style: normal;
   margin-left: 10px;
   font-weight: 700;
-  font-size: clamp(12px, 4vw, 18px);
+  font-size: clamp(12px, 3.3vw, 18px);
   line-height: 25px;
   text-align: center;
   :disabled {

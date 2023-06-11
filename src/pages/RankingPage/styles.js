@@ -2,22 +2,33 @@ import styled from "styled-components";
 import { colors } from "../../assets/colors";
 
 export const RankingContainer = styled.div`
+  @media (max-width: 675px) {
+    padding: 15px;
+    width: 60vw;
+  }
+  @media (min-width: 675px) and (max-width: 1200px) {
+    width: 70vw;
+    padding: 20px;
+  }
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 55vw;
   height: fit-content;
   border-radius: 20px;
-  padding: 30px;
+  padding: 20px;
   border: 2.5px solid ${colors.lightBlue};
   box-sizing: border-box;
   font-family: "DM Sans", sans-serif;
-  >img{
+  > img {
     width: 60%;
   }
 `;
 
 export const RankingTitle = styled.div`
+  @media (max-width: 675px) {
+    margin-top: 100px;
+  }
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,20 +55,29 @@ export const RankingHeader = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 35px;
+  width: 80%;
+  @media (max-width: 675px) {
+    margin-bottom: 15px;
+  }
+
   > .subtitle {
     h2 {
       font-size: clamp(14px, 1.3vw, 20px);
       text-align: center;
-      font-weight: 700;
+      font-weight: 500;
       color: ${colors.darkBlue};
     }
   }
 `;
 
 export const PodiumContainer = styled.div`
-@media(max-width: 1200px) {
-  flex-direction: column;
-}
+  @media (max-width: 675px) {
+    flex-direction: column;
+    width: fit-content;
+  }
+  @media (min-width: 1100px) {
+  width: 90%;
+  }
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -65,11 +85,11 @@ export const PodiumContainer = styled.div`
 `;
 
 export const Podium = styled.div`
-@media (max-width: 1200px) {
-  width: 150px;
-  margin-bottom: 15px;
-}
-  width: 28%;
+  @media (max-width: 675px) {
+    width: 150px;
+    margin-bottom: 15px;
+  }
+  width: clamp(120px, 28%, 200px);
   padding: 1.25em;
   box-sizing: border-box;
   border-radius: 15px;
@@ -79,21 +99,21 @@ export const Podium = styled.div`
   align-items: center;
   justify-content: center;
   .header {
-    font-size: 1.12rem;
+    font-size: clamp(14px, 2vw, 18px);
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     font-weight: 700;
     text-align: center;
     width: 100%;
-      position: relative;
+    position: relative;
     > img {
       width: 2.2em;
     }
   }
   > h2 {
     color: ${colors.lightGrey};
-    font-size: 11px;
+    font-size: clamp(11px, 1vw, 16px);
     font-weight: 700;
     width: 100%;
     display: flex;
@@ -107,7 +127,7 @@ export const Podium = styled.div`
 
 export const ViewsCount = styled.div`
   background-color: ${colors.lightGrey};
-  width: ${p => p.width};
+  width: ${(p) => p.width};
   height: 30px;
   border-radius: 10px;
   padding: 5px;
@@ -118,6 +138,7 @@ export const ViewsCount = styled.div`
   font-weight: 700;
   position: relative;
   margin: 0 auto;
+  font-size: clamp(13px, 1.2vw, 16px);
   > svg {
     position: absolute;
     left: -8px;
@@ -128,15 +149,21 @@ export const ViewsCount = styled.div`
 `;
 
 export const TwoLeftContainer = styled.div`
+@media (min-width: 1100px) {
   width: 80%;
+  }
+  width: 95%;
   height: fit-content;
   margin-top: 5px;
 `;
 
 export const RankingLeft = styled.div`
-@media(max-width: 1200px){
-  display: none;
-}
+  @media (max-width: 675px) {
+    display: none;
+  }
+  @media (min-width: 675px) {
+    padding: 10;
+  }
   display: flex;
   align-items: center;
   width: 100%;
@@ -146,8 +173,8 @@ export const RankingLeft = styled.div`
   border-radius: 10px;
   padding: 9px;
   font-weight: 500;
+  box-sizing: border-box;
   .place {
-
     background-color: ${(p) => (p.place == 0 ? "orange" : "red")};
     padding: 5px;
     border-radius: 7px;
@@ -156,16 +183,13 @@ export const RankingLeft = styled.div`
     font-weight: 700;
   }
   .views {
-
     font-size: 13px;
     margin: initial;
   }
   > h2 {
-
     font-weight: 700;
   }
   > h3 {
-
     color: ${colors.lightGrey};
     font-size: 13px;
     font-weight: 700;
