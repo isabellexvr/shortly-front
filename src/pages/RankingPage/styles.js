@@ -12,6 +12,9 @@ export const RankingContainer = styled.div`
   border: 2.5px solid ${colors.lightBlue};
   box-sizing: border-box;
   font-family: "DM Sans", sans-serif;
+  >img{
+    width: 60%;
+  }
 `;
 
 export const RankingTitle = styled.div`

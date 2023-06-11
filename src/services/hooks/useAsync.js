@@ -15,10 +15,10 @@ export default function useAsync(apiHook, moment = true) {
       setData(data);
       setLoading(false);
       return data;
-    } catch (err) {
+    } catch (error) {
       setError(error);
       setLoading(false);
-      throw err;
+      throw error;
     }
   };
 
