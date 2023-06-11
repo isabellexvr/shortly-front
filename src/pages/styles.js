@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Form = styled.form`
+@media (max-width: 1200px) {
+  width: fit-content;
+  padding: 25px;
+}
   width: 30vw;
   margin-top: 15px;
   height: fit-content;
@@ -29,7 +33,7 @@ export const Title = styled.div`
   cursor: default;
   user-select: none;  
   > h1 {
-    font-size: 55px;
+    font-size: clamp(20px, 10vw, 55px);
     margin-right: 10px;
     margin-bottom: 10px;
     font-weight: 700;
@@ -37,7 +41,7 @@ export const Title = styled.div`
     -webkit-text-stroke: 1.5px ${colors.darkBlue};
   }
   > svg {
-    font-size: 55px;
+    font-size: clamp(20px, 10vw, 50px);
     margin-bottom: 10px;
     color: ${colors.lightBlue};
   }
@@ -52,7 +56,7 @@ export const StyledLink = styled(Link)`
   padding: 10px;
   cursor: pointer;
   user-select: none;
-  width: 21vw;
+  width: clamp(120px,21vw,150px);
   text-align: center;
   line-height: 18px;
 `;

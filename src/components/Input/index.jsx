@@ -32,8 +32,8 @@ const InputContainer = styled.div`
     border-bottom: 2px solid white;
     outline: 0;
     padding-left: 12px;
-    font-size: 20px;
-    width: 22vw;
+    font-size: clamp(12px, 10vw, 20px);
+    width: clamp(210px, 25vw, 350px);
     height: 45px;
     color: ${colors.darkBlue};
     background-color: ${colors.lightGrey};

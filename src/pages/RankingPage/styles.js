@@ -46,7 +46,7 @@ export const RankingHeader = styled.div`
   margin-bottom: 35px;
   > .subtitle {
     h2 {
-      font-size: clamp(12px, 1.3vw, 20px);
+      font-size: clamp(14px, 1.3vw, 20px);
       text-align: center;
       font-weight: 700;
       color: ${colors.darkBlue};
