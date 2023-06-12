@@ -75,11 +75,11 @@ export const IconLabel = styled.label`
 
 export const UrlsContainer = styled.div`
   @media (max-width: 1000px) {
-    height: 70vw;
+    height: 35vw;
   }
   margin-top: 20px;
   width: 75vw;
-  height: 80%;
+  height: 25vw;
   display: flex;
   flex-direction: column;
   color: white;
