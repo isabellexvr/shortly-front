@@ -108,11 +108,16 @@ export default function HomePage() {
               <ImAttachment />
             </IconLabel>
           </ShortenInput>
-          <CleanButton type="reset" onClick={() => setUrl("")}>
-            Limpar
-          </CleanButton>
-          <ShortenButton type="submit">Encurtar</ShortenButton>
+          <div className="buttons">
+            <CleanButton type="reset" onClick={() => setUrl("")}>
+              Limpar
+            </CleanButton>
+            <ShortenButton type="submit">Encurtar</ShortenButton>
+          </div>
         </ShortenForm>
+      </SectionContainer>
+      <SectionContainer>
+        <Title>Suas URLs</Title>
         <UrlsContainer>
           {userUrls?.map((u, i) => (
             <UrlContainer key={i}>
@@ -129,9 +134,7 @@ export default function HomePage() {
                   }`}
                   rel="noreferrer"
                 >
-                  {" "}
-                  {import.meta.env.VITE_API_BASE_URL}
-                  {u.shortenedUrl}
+                  encurtado/{u.shortenedUrl}
                 </a>
                 <h1>{u.visitsCounter} Visitas</h1>
               </UrlInfo>

@@ -33,6 +33,7 @@ export const Logo = styled.img`
   width: 40px;
   object-fit: cover;
   cursor: pointer;
+  margin-top: 15px;
 `;
 
 export const LogoFull = styled.img`
@@ -82,7 +83,6 @@ z-index 1;
   align-items: center;
   justify-content: space-between;
   .header {
-    margin-top: 10px;
     height: 50px;
     width: 100%;
     display: flex;

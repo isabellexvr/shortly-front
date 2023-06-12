@@ -2,6 +2,9 @@ import { colors } from "../../../assets/colors";
 import styled from "styled-components";
 
 export const Title = styled.h1`
+  @media (max-width: 1000px) {
+    
+  }
   font-size: 22px;
   font-weight: 700;
   color: ${colors.darkBlue};
@@ -9,6 +12,11 @@ export const Title = styled.h1`
 `;
 
 export const ShortenButton = styled.button`
+  @media (max-width: 1000px) {
+    width: 100px;
+    height: 45px;
+    margin-bottom: 10px;
+  }
   all: unset;
   cursor: pointer;
   width: 174px;
@@ -32,6 +40,10 @@ export const ShortenButton = styled.button`
 `;
 
 export const CleanButton = styled.button`
+  @media (max-width: 1000px) {
+    width: 100px;
+    height: 45px;
+  }
   all: unset;
   cursor: pointer;
   width: 174px;
@@ -62,6 +74,9 @@ export const IconLabel = styled.label`
 `;
 
 export const UrlsContainer = styled.div`
+  @media (max-width: 1000px) {
+    height: 70vw;
+  }
   margin-top: 20px;
   width: 75vw;
   height: 80%;
@@ -71,6 +86,7 @@ export const UrlsContainer = styled.div`
   padding-right: 3px;
   overflow: scroll;
   box-sizing: border-box;
+
   ::-webkit-scrollbar {
     width: 3px;
     height: 80px;
@@ -84,6 +100,12 @@ export const UrlsContainer = styled.div`
 `;
 
 export const UrlInfo = styled.div`
+  @media (max-width: 800px) {
+    flex-direction: column;
+    height: 80px;
+    padding: 7px;
+    box-sizing: border-box;
+  }
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -104,6 +126,9 @@ export const UrlInfo = styled.div`
   }
   > a,
   h1 {
+    @media (max-width: 1000px) {
+      width: 100%;
+    }
     width: 33%;
     display: flex;
     justify-content: center;
@@ -114,6 +139,10 @@ export const UrlInfo = styled.div`
 `;
 
 export const DeleteButton = styled.button`
+  @media (max-width: 800px) {
+    height: 80px;
+    width: 15%;
+  }
   all: unset;
   background-color: ${colors.lightBlue};
   width: 10%;
@@ -133,6 +162,16 @@ export const UrlContainer = styled.div`
 `;
 
 export const ShortenForm = styled.form`
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    width: 100%;
+  }
+  .buttons {
+    @media (max-width: 1000px) {
+      display: flex;
+    }
+    display: flex;
+  }
   display: flex;
   height: fit-content;
   width: 75vw;
@@ -140,6 +179,9 @@ export const ShortenForm = styled.form`
 `;
 
 export const ShortenInput = styled.div`
+  @media (max-width: 1000px) {
+    width: 90%;
+  }
   position: relative;
   margin-bottom: 10px;
   font-weight: 500;
@@ -148,6 +190,9 @@ export const ShortenInput = styled.div`
   margin-right: 25px;
   width: 80%;
   > .title {
+    @media (max-width: 1000px) {
+      font-size: 17px;
+    }
     position: absolute;
     left: 45px;
     bottom: 18px;
@@ -185,5 +230,7 @@ export const ShortenInput = styled.div`
 `;
 
 export const SectionContainer = styled.section`
-  height: 50%;
+  height: fit-content;
+  padding-left: 40px;
+  margin-bottom: 25px;
 `;
