@@ -16,6 +16,7 @@ import {
   ShortenForm,
   SectionContainer,
   CleanButton,
+  ShortenedUrl,
 } from "./styles";
 import toast, { Toaster } from "react-hot-toast";
 import usePostUrl from "../../../services/hooks/api/urls/usePostUrl";
@@ -23,9 +24,12 @@ import useDeleteUrl from "../../../services/hooks/api/urls/useDeleteUrl";
 import jwt_decode from "jwt-decode";
 import useToken from "../../../services/hooks/useToken";
 import { useNavigate } from "react-router-dom";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { BiCopyAlt } from "react-icons/bi";
 
 export default function HomePage() {
   const [url, setUrl] = useState("");
+  const [toCopy, setToCopy] = useState(null);
   const [userUrls, setUserUrls] = useState([]);
   const { userInfo, setUserInfo } = useUserInfo();
   const token = useToken();
@@ -127,15 +131,27 @@ export default function HomePage() {
                     ? u.originalUrl.slice(0, 25) + "..."
                     : u.originalUrl}
                 </a>
-                <a
-                  target="_SEJ"
-                  href={`${import.meta.env.VITE_API_BASE_URL}urls/open/${
-                    u.shortenedUrl
-                  }`}
-                  rel="noreferrer"
-                >
-                  encurtado/{u.shortenedUrl}
-                </a>
+                <ShortenedUrl>
+                  <a
+                    target="_SEJ"
+                    href={`${import.meta.env.VITE_API_BASE_URL}urls/open/${
+                      u.shortenedUrl
+                    }`}
+                    rel="noreferrer"
+                  >
+                    {u.shortenedUrl}
+                  </a>
+                  <CopyToClipboard
+                    text={`${import.meta.env.VITE_API_BASE_URL}urls/open/${
+                      u.shortenedUrl
+                    }`}
+                  >
+                    <button>
+                      <BiCopyAlt />
+                    </button>
+                  </CopyToClipboard>
+                </ShortenedUrl>
+
                 <h1>{u.visitsCounter} Visitas</h1>
               </UrlInfo>
               <DeleteButton onClick={() => handleDeleteUrl(u.id)}>

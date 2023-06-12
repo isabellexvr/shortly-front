@@ -75,11 +75,11 @@ export const IconLabel = styled.label`
 
 export const UrlsContainer = styled.div`
   @media (max-width: 1000px) {
-    height: 35vw;
+    height: 70vw;
   }
   margin-top: 20px;
   width: 75vw;
-  height: 25vw;
+  height: 35vw;
   display: flex;
   flex-direction: column;
   color: white;
@@ -103,7 +103,7 @@ export const UrlInfo = styled.div`
   @media (max-width: 800px) {
     flex-direction: column;
     height: 80px;
-    padding: 7px;
+    padding: 9px;
     box-sizing: border-box;
   }
   display: flex;
@@ -234,3 +234,22 @@ export const SectionContainer = styled.section`
   padding-left: 40px;
   margin-bottom: 25px;
 `;
+
+export const ShortenedUrl = styled.div`
+display: flex;
+align-items: center;
+  >button{
+    all: unset;
+    font-size: 20px;
+    color: white;
+    margin-left: 8px;
+  }
+  >a{
+    all: unset;
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 700;
+    color: ${colors.lightBlue};
+    
+  }
+`
