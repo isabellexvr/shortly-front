@@ -29,7 +29,6 @@ import { BiCopyAlt } from "react-icons/bi";
 
 export default function HomePage() {
   const [url, setUrl] = useState("");
-  const [toCopy, setToCopy] = useState(null);
   const [userUrls, setUserUrls] = useState([]);
   const { userInfo, setUserInfo } = useUserInfo();
   const token = useToken();

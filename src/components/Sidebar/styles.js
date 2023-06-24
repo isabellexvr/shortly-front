@@ -28,6 +28,15 @@ const IconTextAppear = keyframes`
   }
 `;
 
+const IconTextDisappear = keyframes`
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
+`
+
 export const Logo = styled.img`
   height: 40px;
   width: 40px;
@@ -68,7 +77,7 @@ export const RetractSidebar = keyframes`
 `;
 
 export const CompressedSidebar = styled.div`
-z-index 1;
+z-index 2;
   height: 100vh;
   width: 60px;
   background-color: ${colors.darkBlue};
@@ -88,6 +97,7 @@ z-index 1;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    animation: ${IconTextAppear} 1s ease-in-out;
   }
   .icon{
     animation: ${(p) =>
@@ -114,7 +124,7 @@ export const ExpandedSidebar = styled.div`
       p.showSideBar ? ExpandMobileSidebar : "none"} 0.3s linear;
     width: 160px
   }
-z-index 1;
+z-index 2;
   height: 100vh;
   width: 12vw;
   background-color: ${colors.darkBlue};
@@ -174,19 +184,16 @@ const BrithenScreen = keyframes`
 `
 
 export const LeftScreen = styled.div`
-  @media (max-width: 1200px) {
-    width: calc(100vw - 160px);
-  }
   animation: ${p => p.isOpened ? DarkenScreen : BrithenScreen} 0.5s ease-in-out;
   position: fixed;
   cursor: pointer;
   background-color: black;
   opacity: 0.7;
-  width: 88vw;
+  width: 100vw;
   height: 100vh;
   right: 0;
   top: 0;
-  z-index: 2;
+  z-index: 1;
   display: ${(p) => (p.isOpened ? "" : "none")};
   transition-property: display;
   transition-duration: 1s;
