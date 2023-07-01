@@ -26,11 +26,14 @@ import useToken from "../../../services/hooks/useToken";
 import { useNavigate } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { BiCopyAlt } from "react-icons/bi";
+import ConfirmationModal from "../../../components/ConfirmationModal";
 
 export default function HomePage() {
   const [url, setUrl] = useState("");
   const [userUrls, setUserUrls] = useState([]);
   const { userInfo, setUserInfo } = useUserInfo();
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [urlForDeleting, setUrlForDeleting] = useState(null);
   const token = useToken();
   const navigate = useNavigate();
 
@@ -50,6 +53,11 @@ export default function HomePage() {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  function handleDeleteModal(urlId) {
+    setDeleteModal(true);
+    setUrlForDeleting(urlId);
   }
 
   async function handleDeleteUrl(urlId) {
@@ -84,6 +92,16 @@ export default function HomePage() {
 
   return (
     <>
+      {deleteModal && (
+        <ConfirmationModal
+          message="Você tem certeza que quer deletar essa URL encurtada?"
+          confirmButton="Deletar"
+          setModal={setDeleteModal}
+          confirmationFunction={handleDeleteUrl}
+          urlForDeleting={urlForDeleting}
+        />
+      )}
+
       <Toaster />
       <SectionContainer>
         <Title>Encurtar URLs</Title>
@@ -153,7 +171,7 @@ export default function HomePage() {
 
                 <h1>{u.visitsCounter} Visitas</h1>
               </UrlInfo>
-              <DeleteButton onClick={() => handleDeleteUrl(u.id)}>
+              <DeleteButton onClick={() => handleDeleteModal(u.id)}>
                 <RiDeleteBin6Line />
               </DeleteButton>
             </UrlContainer>

@@ -20,6 +20,7 @@ import useUserInfo from "../../contexts/hooks/useUserInfo";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
+
 export default function RankingPage() {
   const { getRanking, getRankingLoading, getRankingError } = useGetRanking();
   const [podium, setPodium] = useState([]);
@@ -27,6 +28,7 @@ export default function RankingPage() {
   const token = useToken();
   const { setUserInfo } = useUserInfo();
   const navigate = useNavigate();
+  const modal = document.getElementById('modal')
 
   const getUserId = (token) => {
     const decoded = jwt_decode(token);
@@ -38,7 +40,6 @@ export default function RankingPage() {
     }
     return decoded.sub;
   };
-
 
   useEffect(() => {
     async function getApiData() {
@@ -79,6 +80,7 @@ export default function RankingPage() {
           </RankingTitle>
 
           <RankingContainer>
+
             <RankingHeader>
               <div className="subtitle">
                 <h2>
@@ -129,7 +131,7 @@ export default function RankingPage() {
                     <ViewsCount width={"130px"} className="views">
                       <HiCursorClick />
                       {l.visitsCount} Views
-                    </ViewsCount >
+                    </ViewsCount>
                   </RankingLeft>
                 ))}
             </TwoLeftContainer>

@@ -9,6 +9,7 @@ import UserInfoProvider from "./contexts/UserInfoContext";
 import HomePage from "./pages/User/HomePage";
 import useToken from "./services/hooks/useToken";
 import UserRoutes from "./pages/User";
+import WelcomePage from "./pages/WelcomePage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Header />
           <Sidebar />
           <Routes>
+            <Route element={<WelcomePage/>} path="/"/>
             <Route element={<RankingPage />} path="/ranking" />
             <Route element={<SignUpPage />} path="/sign-up" />
             <Route element={<SignInPage />} path="/sign-in" />
